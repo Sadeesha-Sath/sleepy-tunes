@@ -22,8 +22,9 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.blueAccent.shade400,
           bottomNavigationBarTheme: BottomNavigationBarThemeData(
               backgroundColor: kBottomNavBarBackgroundColor,
-              selectedItemColor: Colors.blueAccent.shade400),
-          unselectedWidgetColor: Colors.grey.shade600),
+              selectedItemColor: Colors.lightBlueAccent.shade700),
+          unselectedWidgetColor: Colors.grey.shade600,
+          dialogBackgroundColor: kBackgroundColor),
       home: HomeScreen(),
     );
   }

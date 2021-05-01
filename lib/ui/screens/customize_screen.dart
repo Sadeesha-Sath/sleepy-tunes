@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:sleep_app/ui/ui_constants.dart';
 
@@ -7,7 +8,23 @@ class CustomizeScreen extends StatefulWidget {
 }
 
 class _CustomizeScreenState extends State<CustomizeScreen> {
-  final ScrollController _scrollController = ScrollController();
+  late final ScrollController _scrollController;
+  late final ScrollController _horizontalScrollController;
+  int _selectedTab = 0;
+
+  @override
+  void initState() {
+    _scrollController = ScrollController();
+    _horizontalScrollController = ScrollController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    _horizontalScrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,17 +35,124 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
           controller: _scrollController,
           slivers: [
             SliverAppBar(
-              pinned: true,
-              title: Text("Customize"),
+              expandedHeight: 110,
+              floating: true,
+              title: Text("Customize Tracks"),
               centerTitle: true,
               elevation: 1,
               shadowColor: kBackgroundColor,
               backgroundColor: Colors.transparent,
             ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 30, left: 12, right: 12),
+                child: SizedBox(
+                  height: 40,
+                  child: ListView(
+                    dragStartBehavior: DragStartBehavior.start,
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    controller: _horizontalScrollController,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 7),
+                        padding: EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: _selectedTab == 0
+                              ? Colors.lightBlue.shade800
+                              : null,
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                              color: _selectedTab == 0
+                                  ? Colors.lightBlue.shade900
+                                  : kUnselectedItemColor),
+                        ),
+                        child: TextButton(
+                          style: ButtonStyle(
+                              padding:
+                                  MaterialStateProperty.all(EdgeInsets.zero),
+                              foregroundColor:
+                                  MaterialStateProperty.all(kPrimaryColor)),
+                          onPressed: () {
+                            setState(() {
+                              _selectedTab = 0;
+                            });
+                          },
+                          child: Center(
+                            child:
+                                Text("All movies, music, bs, and everything"),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 7),
+                        padding: EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: _selectedTab == 1
+                              ? Colors.lightBlue.shade800
+                              : null,
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                              color: _selectedTab == 1
+                                  ? Colors.lightBlue.shade900
+                                  : kUnselectedItemColor),
+                        ),
+                        child: TextButton(
+                          style: ButtonStyle(
+                              padding:
+                                  MaterialStateProperty.all(EdgeInsets.zero),
+                              foregroundColor:
+                                  MaterialStateProperty.all(kPrimaryColor)),
+                          onPressed: () {
+                            setState(() {
+                              _selectedTab = 1;
+                            });
+                          },
+                          child: Center(
+                            child:
+                                Text("All movies, music, bs, and everything"),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 7),
+                        padding: EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: _selectedTab == 2
+                              ? Colors.lightBlue.shade800
+                              : null,
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                              color: _selectedTab == 2
+                                  ? Colors.lightBlue.shade900
+                                  : kUnselectedItemColor),
+                        ),
+                        child: TextButton(
+                          style: ButtonStyle(
+                              padding:
+                                  MaterialStateProperty.all(EdgeInsets.zero),
+                              foregroundColor:
+                                  MaterialStateProperty.all(kPrimaryColor)),
+                          onPressed: () {
+                            setState(() {
+                              _selectedTab = 2;
+                            });
+                          },
+                          child: Center(
+                            child:
+                                Text("All movies, music, bs, and everything"),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
             SliverGrid(
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: 200,
-                childAspectRatio: 0.87,
+                childAspectRatio: 0.85,
               ),
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
@@ -38,7 +162,8 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
                         color: Colors.grey.shade900,
                         elevation: 2,
                         clipBehavior: Clip.antiAlias,
-                        margin: EdgeInsets.only(left: 15, right: 15, top: 55),
+                        margin:
+                            EdgeInsets.only(left: 15, right: 15, bottom: 60),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
@@ -57,7 +182,7 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
                           "Beach",
                           textAlign: TextAlign.center,
                         ),
-                        bottom: -25,
+                        bottom: 30,
                         // start: 30,
                         width: 140,
                       )
@@ -72,15 +197,20 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
         ),
         Positioned(
           child: FloatingActionButton(
-            child: Center(child: Icon(Icons.send)),
+            elevation: 2,
+            child: Center(
+                child: Icon(
+              Icons.queue_music_rounded,
+              size: 28,
+            )),
             shape: CircleBorder(),
             onPressed: () {},
-            foregroundColor: Colors.white,
-            backgroundColor: Colors.grey.shade800,
+            foregroundColor: kPrimaryColor,
+            backgroundColor: Colors.lightBlue.shade800,
             // backgroundColor: Color(0xFF141414),
           ),
-          right: 30,
-          bottom: 30,
+          right: 20,
+          bottom: 20,
         ),
       ]),
     );

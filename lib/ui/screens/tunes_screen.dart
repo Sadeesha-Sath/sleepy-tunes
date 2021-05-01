@@ -17,11 +17,11 @@ class _TunesScreenState extends State<TunesScreen> {
         controller: _scrollController,
         slivers: [
           SliverAppBar(
-            pinned: true,
+            floating: true,
             title: Text("Sleepy Tunes"),
             centerTitle: true,
             elevation: 1,
-            expandedHeight: 85,
+            expandedHeight: 120,
             shadowColor: kBackgroundColor,
             backgroundColor: Colors.transparent,
           ),
@@ -37,7 +37,7 @@ class _TunesScreenState extends State<TunesScreen> {
                     color: Colors.grey.shade900,
                     elevation: 2,
                     clipBehavior: Clip.antiAlias,
-                    margin: EdgeInsets.only(left: 15, right: 15, top: 30),
+                    margin: EdgeInsets.only(left: 15, right: 15, bottom: 20),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
