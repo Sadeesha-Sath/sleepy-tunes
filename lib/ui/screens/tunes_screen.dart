@@ -55,7 +55,7 @@ class _TunesScreenState extends State<TunesScreen> {
                       "Beach",
                       textAlign: TextAlign.center,
                     ),
-                    bottom: 12,
+                    bottom: 45,
                     // start: 30,
                     width: 200,
                   )

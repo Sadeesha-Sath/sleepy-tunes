@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:sleep_app/app_logic/providers/default_timer.dart';
 import 'package:sleep_app/ui/screens/tunes_screen.dart';
 import 'package:sleep_app/ui/screens/settings_screen.dart';
 import 'package:sleep_app/ui/screens/customize_screen.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   final List<Widget> _screens = [
@@ -15,6 +17,12 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
+
+  @override
+  void initState() {
+    context.read<DefaultTimer>().getSavedData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -54,93 +54,75 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
                     scrollDirection: Axis.horizontal,
                     controller: _horizontalScrollController,
                     children: [
-                      Container(
-                        margin: EdgeInsets.symmetric(horizontal: 7),
-                        padding: EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: _selectedTab == 0
-                              ? Colors.lightBlue.shade800
-                              : null,
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                              color: _selectedTab == 0
-                                  ? Colors.lightBlue.shade900
-                                  : kUnselectedItemColor),
-                        ),
-                        child: TextButton(
-                          style: ButtonStyle(
-                              padding:
-                                  MaterialStateProperty.all(EdgeInsets.zero),
-                              foregroundColor:
-                                  MaterialStateProperty.all(kPrimaryColor)),
-                          onPressed: () {
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 7),
+                        child: GestureDetector(
+                          onTap: () {
                             setState(() {
                               _selectedTab = 0;
                             });
                           },
-                          child: Center(
-                            child:
-                                Text("All movies, music, bs, and everything"),
+                          child: Container(
+                            padding: EdgeInsets.all(9),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                  color: _selectedTab == 0
+                                      ? Colors.lightBlue.shade500
+                                      : kUnselectedItemColor),
+                            ),
+                            child: Center(
+                              child:
+                                  Text("All movies, music, bs, and everything"),
+                            ),
                           ),
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsets.symmetric(horizontal: 7),
-                        padding: EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: _selectedTab == 1
-                              ? Colors.lightBlue.shade800
-                              : null,
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                              color: _selectedTab == 1
-                                  ? Colors.lightBlue.shade900
-                                  : kUnselectedItemColor),
-                        ),
-                        child: TextButton(
-                          style: ButtonStyle(
-                              padding:
-                                  MaterialStateProperty.all(EdgeInsets.zero),
-                              foregroundColor:
-                                  MaterialStateProperty.all(kPrimaryColor)),
-                          onPressed: () {
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 7),
+                        child: GestureDetector(
+                          onTap: () {
                             setState(() {
                               _selectedTab = 1;
                             });
                           },
-                          child: Center(
-                            child:
-                                Text("All movies, music, bs, and everything"),
+                          child: Container(
+                            padding: EdgeInsets.all(9),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                  color: _selectedTab == 1
+                                      ? Colors.lightBlue.shade500
+                                      : kUnselectedItemColor),
+                            ),
+                            child: Center(
+                              child:
+                                  Text("All movies, music, bs, and everything"),
+                            ),
                           ),
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsets.symmetric(horizontal: 7),
-                        padding: EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: _selectedTab == 2
-                              ? Colors.lightBlue.shade800
-                              : null,
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                              color: _selectedTab == 2
-                                  ? Colors.lightBlue.shade900
-                                  : kUnselectedItemColor),
-                        ),
-                        child: TextButton(
-                          style: ButtonStyle(
-                              padding:
-                                  MaterialStateProperty.all(EdgeInsets.zero),
-                              foregroundColor:
-                                  MaterialStateProperty.all(kPrimaryColor)),
-                          onPressed: () {
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 7),
+                        child: GestureDetector(
+                          onTap: () {
                             setState(() {
                               _selectedTab = 2;
                             });
                           },
-                          child: Center(
-                            child:
-                                Text("All movies, music, bs, and everything"),
+                          child: Container(
+                            padding: EdgeInsets.all(9),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                  color: _selectedTab == 2
+                                      ? Colors.lightBlue.shade500
+                                      : kUnselectedItemColor),
+                            ),
+                            child: Center(
+                              child:
+                                  Text("All movies, music, bs, and everything"),
+                            ),
                           ),
                         ),
                       ),
@@ -205,8 +187,8 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
             )),
             shape: CircleBorder(),
             onPressed: () {},
-            foregroundColor: kPrimaryColor,
-            backgroundColor: Colors.lightBlue.shade800,
+            foregroundColor: Colors.white,
+            backgroundColor: Colors.lightBlueAccent.shade700,
             // backgroundColor: Color(0xFF141414),
           ),
           right: 20,
