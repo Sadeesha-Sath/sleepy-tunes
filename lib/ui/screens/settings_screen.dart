@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sleep_app/app_logic/providers/default_timer.dart';
 import 'package:sleep_app/ui/ui_constants.dart';
-import 'package:flutter_picker/Picker.dart';
 import 'package:provider/provider.dart';
+import 'package:sleep_app/ui/utils/timer_picker.dart';
 
 class SettingsScreen extends StatefulWidget {
   @override
@@ -34,7 +34,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               [
                 ElevatedButton(
                   onPressed: () {
-                    showPickerNumber(context);
+                    showPickerNumber(context, titleString: "Default Timer", currentTiming: [_hours, _minutes]);
                   },
                   child: ListTile(
                     title: Text("Default Timer"),
@@ -101,54 +101,5 @@ class _SettingsScreenState extends State<SettingsScreen> {
         children: [Text("Hello")],
       ),
     );
-  }
-
-  showPickerNumber(BuildContext context) {
-    Picker(
-        itemExtent: 33,
-        height: 200,
-        looping: true,
-        textAlign: TextAlign.center,
-        selecteds: [_hours, _minutes],
-        selectedTextStyle: TextStyle(color: Colors.white, fontSize: 23),
-        textStyle: TextStyle(color: Colors.white, fontSize: 20),
-        backgroundColor: kBackgroundColor,
-        magnification: 1.1,
-        confirmTextStyle: kDialogBoxTextStyle,
-        cancelTextStyle: kDialogBoxTextStyle,
-        containerColor: kBackgroundColor,
-        // hideHeader: true,
-        builderHeader: (context) => Container(
-              padding: EdgeInsets.only(left: 27, right: 20, top: 8, bottom: 12),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [Text("Hours"), Text("Minutes")],
-              ),
-            ),
-        adapter: NumberPickerAdapter(
-          data: [
-            NumberPickerColumn(begin: 00, end: 24),
-            NumberPickerColumn(begin: 00, end: 60),
-          ],
-        ),
-        delimiter: [
-          PickerDelimiter(
-            child: Container(
-              // decoration: BoxDecoration(color: kBackgroundColor),
-              width: 30.0,
-              alignment: Alignment.center,
-              child: Text(
-                ":",
-                style: TextStyle(fontWeight: FontWeight.w900, fontSize: 30),
-              ),
-            ),
-          ),
-        ],
-        title: Center(child: Text("Default Timer")),
-        onConfirm: (Picker picker, List value) {
-          setState(() {
-            context.read<DefaultTimer>().changeTiming(value.cast<int>());
-          });
-        }).showDialog(context);
   }
 }
