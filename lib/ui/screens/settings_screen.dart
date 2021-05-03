@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:sleep_app/app_logic/logic_handelers/file_handler.dart';
+import 'package:sleep_app/app_logic/models/preset.dart';
 import 'package:sleep_app/app_logic/providers/default_timer.dart';
+import 'package:sleep_app/app_logic/providers/presets.dart';
 import 'package:sleep_app/ui/ui_constants.dart';
 import 'package:provider/provider.dart';
 import 'package:sleep_app/ui/utils/timer_picker.dart';
@@ -34,7 +37,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
               [
                 ElevatedButton(
                   onPressed: () {
-                    showPickerNumber(context, titleString: "Default Timer", currentTiming: [_hours, _minutes]);
+                    showPickerNumber(context,
+                        titleString: "Default Timer",
+                        currentTiming: [_hours, _minutes]);
                   },
                   child: ListTile(
                     title: Text("Default Timer"),
@@ -48,7 +53,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   onPressed: () {
                     showDialog(
                       context: context,
-                      builder: (context) => showPresetDialog(),
+                      builder: (context) => PresetDialog(
+                          presetList: context.watch<Presets>().getPresets),
                     );
                   },
                   child: ListTile(
@@ -92,13 +98,113 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
     );
   }
+}
 
-  Widget showPresetDialog() {
+class PresetDialog extends StatefulWidget {
+  // TODO Find another way to do this
+  List<Preset> presetList;
+
+  PresetDialog({required this.presetList});
+
+  @override
+  _PresetDialogState createState() => _PresetDialogState();
+}
+
+class _PresetDialogState extends State<PresetDialog> {
+  ScrollController _controller = ScrollController();
+  List<bool> _isSelected = [];
+
+  @override
+  void initState() {
+    super.initState();
+    widget.presetList.forEach((element) {
+      _isSelected.add(false);
+    });
+  }
+
+  List<int> deleteIndexList = [];
+  @override
+  Widget build(BuildContext context) {
     return Dialog(
+      insetPadding: EdgeInsets.symmetric(horizontal: 40, vertical: 120),
       clipBehavior: Clip.hardEdge,
-      child: ListView(
-        // TODO Use a builder method to draw a checkboxListTile for each preset, with a delete and cancel button below the listview
-        children: [Text("Hello")],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            Container(
+              margin: EdgeInsets.only(top: 5, bottom: 15),
+              child: Center(
+                child: Text(
+                  "Clear Presets",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                ),
+              ),
+            ),
+            widget.presetList.isNotEmpty
+                ? ListView.builder(
+                    shrinkWrap: true,
+                    controller: _controller,
+                    itemCount: widget.presetList.length,
+                    itemBuilder: (context, int index) {
+                      return CheckboxListTile(
+                        activeColor: Colors.lightBlueAccent.shade700,
+                        selected: _isSelected[index],
+                        value: _isSelected[index],
+                        onChanged: (bool? value) {
+                          setState(() {
+                            _isSelected[index] = value!;
+                          });
+                          if (_isSelected[index]) {
+                            deleteIndexList.add(index);
+                          } else {
+                            deleteIndexList.remove(index);
+                          }
+                        },
+                        title: Text(
+                          widget.presetList[index].name,
+                          style: TextStyle(color: kPrimaryColor),
+                        ),
+                      );
+                    },
+                  )
+                : Text(
+                    "There are no Saved Presets Available",
+                    textAlign: TextAlign.center,
+                  ),
+            Container(
+              margin: EdgeInsets.only(bottom: 5, top: 12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Spacer(
+                    flex: 8,
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      "Cancel",
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                  Spacer(),
+                  TextButton(
+                      onPressed: () {
+                        context.read<Presets>().deletePreset(deleteIndexList);
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        "Clear",
+                        style: TextStyle(color: Colors.redAccent, fontSize: 18),
+                      ))
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

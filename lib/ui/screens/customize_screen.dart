@@ -181,25 +181,50 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
             ],
           ),
           Positioned(
-            child: FloatingActionButton(
-              elevation: 2,
-              child: Center(
-                  child: Icon(
-                Icons.queue_music_rounded,
-                size: 28,
-              )),
-              shape: CircleBorder(),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => FinishCustomizationScreen(),
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                FloatingActionButton(
+                  elevation: 2,
+                  child: Center(
+                      child: Icon(
+                    Icons.queue_music_rounded,
+                    size: 28,
+                  )),
+                  shape: CircleBorder(),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => FinishCustomizationScreen(),
+                      ),
+                    );
+                  },
+                  foregroundColor: kBackgroundColor,
+                  backgroundColor: Colors.lightBlueAccent.shade700,
+                  // backgroundColor: Color(0xFF141414),
+                ),
+                Positioned(
+                  top: -11,
+                  right: 0,
+                  child: Container(
+                    padding: EdgeInsets.all(6.5),
+                    child: Center(
+                      child: Text(
+                        "2",
+                        style: TextStyle(
+                          fontSize: 15,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.redAccent,
+                    ),
                   ),
-                );
-              },
-              foregroundColor: kBackgroundColor,
-              backgroundColor: Colors.lightBlueAccent.shade700,
-              // backgroundColor: Color(0xFF141414),
+                )
+              ],
             ),
             right: 20,
             bottom: 20,

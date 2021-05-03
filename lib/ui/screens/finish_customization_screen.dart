@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sleep_app/app_logic/models/preset.dart';
 import 'package:sleep_app/app_logic/providers/default_timer.dart';
+import 'package:sleep_app/app_logic/providers/presets.dart';
 import 'package:sleep_app/ui/screens/player_screen.dart';
 import 'package:sleep_app/ui/ui_constants.dart';
 import 'package:sleep_app/ui/utils/timer_picker.dart';
@@ -129,7 +131,23 @@ class _FinishCustomizationScreenState extends State<FinishCustomizationScreen> {
                 iconSize: 31.5,
                 color: Colors.lightBlueAccent.shade400,
                 icon: Icon(Icons.save),
-                onPressed: () {},
+                // TODO Open a dialog box and make user to type a name => (Suppy a default one first)
+                onPressed: () {
+                  // ! For debugging
+                  context.read<Presets>().addPreset(Preset(
+                          name: "Test 1",
+                          timing: [
+                            1,
+                            54
+                          ],
+                          trackList: [
+                            Track(
+                                trackImagePath: '1',
+                                trackName: '1',
+                                trackPath: '1',
+                                volume: 0.6)
+                          ]));
+                },
               ),
             ),
           ),

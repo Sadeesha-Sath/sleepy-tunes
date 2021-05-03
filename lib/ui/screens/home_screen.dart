@@ -5,6 +5,7 @@ import 'package:sleep_app/ui/screens/settings_screen.dart';
 import 'package:sleep_app/ui/screens/customize_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:sleep_app/ui/ui_constants.dart';
+import 'package:sleep_app/app_logic/providers/presets.dart';
 
 class HomeScreen extends StatefulWidget {
   final List<Widget> _screens = [
@@ -21,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
+    context.read<Presets>().loadPresets();
     context.read<DefaultTimer>().getSavedData();
     super.initState();
   }
