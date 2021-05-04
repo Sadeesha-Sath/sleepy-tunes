@@ -12,6 +12,7 @@ class _TunesScreenState extends State<TunesScreen> {
     final ScrollController _scrollController = ScrollController();
 
     return Container(
+      padding: EdgeInsets.only(top: 10),
       color: kBackgroundColor,
       child: CustomScrollView(
         controller: _scrollController,

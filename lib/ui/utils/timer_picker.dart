@@ -21,7 +21,7 @@ showPickerNumber(BuildContext context,
       containerColor: kBackgroundColor,
       // hideHeader: true,
       builderHeader: (context) => Container(
-            padding: EdgeInsets.only(left: 27, right: 20, top: 8, bottom: 12),
+            padding: EdgeInsets.only(left: 27, right: 20, top: 10, bottom: 12),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [Text("Hours"), Text("Minutes")],
@@ -41,7 +41,10 @@ showPickerNumber(BuildContext context,
             alignment: Alignment.center,
             child: Text(
               ":",
-              style: TextStyle(fontWeight: FontWeight.w900, fontSize: 30),
+              style: TextStyle(
+                  fontWeight: FontWeight.w800,
+                  fontSize: 30,
+                  color: kPrimaryColor),
             ),
           ),
         ),

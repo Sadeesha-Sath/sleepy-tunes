@@ -1,7 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:sleep_app/app_logic/providers/presets.dart';
 import 'package:sleep_app/ui/screens/finish_customization_screen.dart';
 import 'package:sleep_app/ui/ui_constants.dart';
+import 'package:provider/provider.dart';
 
 class CustomizeScreen extends StatefulWidget {
   @override
@@ -29,7 +31,9 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var presetCount = context.watch<Presets>().getPresets.length;
     return Container(
+      padding: EdgeInsets.only(top: 10),
       color: kBackgroundColor,
       child: Stack(
         children: [
@@ -42,6 +46,42 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
                 title: Text("Customize Tracks"),
                 centerTitle: true,
                 elevation: 1,
+                actions: [
+                  Stack(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(right: 5, top: 3),
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.save_rounded,
+                            size: 27,
+                          ),
+                          onPressed: () {},
+                        ),
+                      ),
+                      Positioned(
+                        top: presetCount > 9 ? 4 : 5,
+                        right: presetCount > 9 ? 6 : 8,
+                        child: Container(
+                          padding: EdgeInsets.all(presetCount > 9 ? 3 : 4),
+                          child: Center(
+                            child: Text(
+                              presetCount.toString(),
+                              style: TextStyle(
+                                fontSize: presetCount > 9 ? 12 : 13,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.redAccent,
+                          ),
+                        ),
+                      )
+                    ],
+                  )
+                ],
                 shadowColor: kBackgroundColor,
                 backgroundColor: Colors.transparent,
               ),

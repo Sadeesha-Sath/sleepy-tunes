@@ -20,9 +20,10 @@ class Presets with ChangeNotifier {
           trackList.add(newTrack);
         }
         Preset newPreset = Preset(
-            name: preset['name'],
-            timing: preset['timing'],
-            trackList: trackList,);
+          name: preset['name'],
+          timing: preset['timing'],
+          trackList: trackList,
+        );
         _presetList.add(newPreset);
       }
       notifyListeners();
@@ -33,10 +34,8 @@ class Presets with ChangeNotifier {
 
   void deletePreset(List<int> indexList) {
     // This sorts the indexList to a descending order so that the removing of previous index won't affect the next indexes
-    indexList
-      ..sort()
-      ..reversed;
-    for (int index in indexList) {
+    indexList.sort();
+    for (int index in indexList.reversed) {
       _presetList.removeAt(index);
     }
     notifyListeners();
