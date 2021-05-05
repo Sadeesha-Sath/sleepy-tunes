@@ -61,7 +61,7 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
                       ),
                       Positioned(
                         top: presetCount > 9 ? 4 : 5,
-                        right: presetCount > 9 ? 6 : 8,
+                        right: presetCount > 9 ? 6 : 9,
                         child: Container(
                           padding: EdgeInsets.all(presetCount > 9 ? 3 : 4),
                           child: Center(
@@ -245,7 +245,7 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
                   // backgroundColor: Color(0xFF141414),
                 ),
                 Positioned(
-                  top: -11,
+                  top: -12,
                   right: 0,
                   child: Container(
                     padding: EdgeInsets.all(6.5),
