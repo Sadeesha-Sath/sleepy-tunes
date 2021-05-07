@@ -189,9 +189,7 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
                           clipBehavior: Clip.antiAlias,
                           margin:
                               EdgeInsets.only(left: 15, right: 15, bottom: 60),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
+                          shape: CircleBorder(),
                           child: Container(),
                           // child: Image(
                           //   image: NetworkImage(

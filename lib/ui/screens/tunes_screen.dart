@@ -12,7 +12,7 @@ class _TunesScreenState extends State<TunesScreen> {
     final ScrollController _scrollController = ScrollController();
 
     return Container(
-      padding: EdgeInsets.only(top: 10),
+      padding: EdgeInsets.only(top: 10, left: 8, right: 8),
       color: kBackgroundColor,
       child: CustomScrollView(
         controller: _scrollController,
@@ -27,8 +27,10 @@ class _TunesScreenState extends State<TunesScreen> {
             backgroundColor: Colors.transparent,
           ),
           SliverGrid(
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 300,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              // maxCrossAxisExtent: 300,
+              crossAxisCount: 2,
+              crossAxisSpacing: 8,
               childAspectRatio: 1.1,
             ),
             delegate: SliverChildBuilderDelegate(
@@ -38,9 +40,10 @@ class _TunesScreenState extends State<TunesScreen> {
                     color: Colors.grey.shade900,
                     elevation: 2,
                     clipBehavior: Clip.antiAlias,
-                    margin: EdgeInsets.only(left: 15, right: 15, bottom: 20),
+                    margin: EdgeInsets.only(left: 15, right: 15, bottom: 15),
+                    // TODO Try to make the cards circular
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(28),
                     ),
                     child: Image(
                       image: NetworkImage(
