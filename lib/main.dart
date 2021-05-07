@@ -4,11 +4,13 @@ import 'package:sleep_app/app_logic/providers/presets.dart';
 import 'package:sleep_app/theme.dart';
 import 'package:sleep_app/ui/screens/home_screen.dart';
 import 'package:sleep_app/app_logic/providers/default_timer.dart';
+import 'package:sleep_app/app_logic/providers/tunes.dart';
 
 void main() {
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider<Tunes>(create: (_) => Tunes()),
         ChangeNotifierProvider<Presets>(create: (_) => Presets()),
         ChangeNotifierProvider<DefaultTimer>(create: (_) => DefaultTimer()),
       ],

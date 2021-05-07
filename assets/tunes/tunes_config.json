@@ -1,62 +1,62 @@
 [
   {
     "title": "Life",
-    "path": "assets\\tunes\\audio\\life.mp3",
-    "cover_art": "assets\\tunes\\cover_art\\life.jpg"
+    "path": "assets/tunes/audio/life.mp3",
+    "cover_art": "assets/tunes/cover_art/life.jpg"
   },
   {
     "title": "Breakfast",
-    "path": "assets\\tunes\\audio\\breakfast.mp3",
-    "cover_art": "assets\\tunes\\cover_art\\breakfast.jpg"
+    "path": "assets/tunes/audio/breakfast.mp3",
+    "cover_art": "assets/tunes/cover_art/breakfast.jpg"
   },
   {
     "title": "But When You Sleep",
-    "path": "assets\\tunes\\audio\\but_when_you_sleep.mp3",
-    "cover_art": "assets\\tunes\\cover_art\\life.jpg"
+    "path": "assets/tunes/audio/but_when_you_sleep.mp3",
+    "cover_art": "assets/tunes/cover_art/but_when_you_sleep.jpg"
   },
   {
     "title": "Dreams Unsettled",
-    "path": "assets\\tunes\\audio\\dreams_unsettled.mp3",
-    "cover_art": "assets\\tunes\\cover_art\\but_when_you_sleep.jpg"
+    "path": "assets/tunes/audio/dreams_unsettled.mp3",
+    "cover_art": "assets/tunes/cover_art/dreams.jpeg"
   },
   {
     "title": "Nature",
-    "path": "assets\\tunes\\audio\\nature.mp3",
-    "cover_art": "assets\\tunes\\cover_art\\nature.jpg"
+    "path": "assets/tunes/audio/nature.mp3",
+    "cover_art": "assets/tunes/cover_art/nature.jpg"
   },
   {
     "title": "Pentatonic",
-    "path": "assets\\tunes\\audio\\Pentatonic.mp3",
-    "cover_art": "assets\\tunes\\cover_art\\pentatonic.jpg"
+    "path": "assets/tunes/audio/Pentatonic.mp3",
+    "cover_art": "assets/tunes/cover_art/pentatonic.jpg"
   },
   {
     "title": "Society",
-    "path": "assets\\tunes\\audio\\society.mp3",
-    "cover_art": "assets\\tunes\\cover_art\\society.jpg"
+    "path": "assets/tunes/audio/society.mp3",
+    "cover_art": "assets/tunes/cover_art/society.jpg"
   },
   {
     "title": "Spring",
-    "path": "assets\\tunes\\audio\\spring.mp3",
-    "cover_art": "assets\\tunes\\cover_art\\spring.jpg"
+    "path": "assets/tunes/audio/spring.mp3",
+    "cover_art": "assets/tunes/cover_art/spring.jpg"
   },
   {
     "title": "Waves",
-    "path": "assets\\tunes\\audio\\waves.mp3",
-    "cover_art": "assets\\tunes\\cover_art\\waves.jpg"
+    "path": "assets/tunes/audio/waves.mp3",
+    "cover_art": "assets/tunes/cover_art/wave.jpg"
   },
   {
     "title": "Dreams",
-    "path": "assets\\tunes\\audio\\dreams_unsettled.mp3",
-    "cover_art": "assets\\tunes\\cover_art\\dreams.jpeg"
+    "path": "assets/tunes/audio/dreams_unsettled.mp3",
+    "cover_art": "assets/tunes/cover_art/dreams.jpeg"
   },
   {
     "title": "Noise - High Pitch",
-    "path": "assets\\tunes\\audio\\noise_high.mp3",
-    "cover_art": "assets\\tunes\\cover_art\\noise.jpg"
+    "path": "assets/tunes/audio/noise_high.mp3",
+    "cover_art": "assets/tunes/cover_art/noise.jpg"
   },
   {
     "title": "Noise - Low Pitch",
-    "path": "assets\\tunes\\audio\\noise_low.mp3",
-    "cover_art": "assets\\tunes\\cover_art\\noise.jpg"
+    "path": "assets/tunes/audio/noise_low.mp3",
+    "cover_art": "assets/tunes/cover_art/noise.jpg"
   }
 ]

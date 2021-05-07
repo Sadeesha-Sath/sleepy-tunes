@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sleep_app/app_logic/providers/default_timer.dart';
+import 'package:sleep_app/app_logic/providers/tunes.dart';
 import 'package:sleep_app/ui/screens/tunes_screen.dart';
 import 'package:sleep_app/ui/screens/settings_screen.dart';
 import 'package:sleep_app/ui/screens/customize_screen.dart';
@@ -22,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
+    context.read<Tunes>().loadTunes();
     context.read<Presets>().loadPresets();
     context.read<DefaultTimer>().getSavedData();
     super.initState();

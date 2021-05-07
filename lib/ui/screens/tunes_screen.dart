@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sleep_app/ui/ui_constants.dart';
+import 'package:sleep_app/ui/utils/tunes_grid_builder.dart';
+import 'package:sleep_app/app_logic/models/tune.dart';
+import 'package:sleep_app/app_logic/providers/tunes.dart';
+import 'package:provider/provider.dart';
 
 class TunesScreen extends StatefulWidget {
   @override
@@ -9,8 +13,8 @@ class TunesScreen extends StatefulWidget {
 class _TunesScreenState extends State<TunesScreen> {
   @override
   Widget build(BuildContext context) {
+    final List<Tune> tunesList = context.watch<Tunes>().getTunes;
     final ScrollController _scrollController = ScrollController();
-
     return Container(
       padding: EdgeInsets.only(top: 10, left: 8, right: 8),
       color: kBackgroundColor,
@@ -31,42 +35,11 @@ class _TunesScreenState extends State<TunesScreen> {
               // maxCrossAxisExtent: 300,
               crossAxisCount: 2,
               crossAxisSpacing: 8,
-              childAspectRatio: 1.1,
+              childAspectRatio: 1.05,
             ),
             delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return Stack(children: [
-                  Card(
-                    color: Colors.grey.shade900,
-                    elevation: 2,
-                    clipBehavior: Clip.antiAlias,
-                    margin: EdgeInsets.only(left: 15, right: 15, bottom: 15),
-                    // TODO Try to make the cards circular
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(28),
-                    ),
-                    child: Image(
-                      image: NetworkImage(
-                          "https://images.unsplash.com/photo-1517148265373-cc0df208f9ac?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"),
-                      alignment: Alignment.topCenter,
-                      fit: BoxFit.fill,
-                      isAntiAlias: true,
-                    ),
-                  ),
-                  Positioned.directional(
-                    textDirection: TextDirection.ltr,
-                    child: Text(
-                      "Beach",
-                      textAlign: TextAlign.center,
-                    ),
-                    bottom: 45,
-                    // start: 30,
-                    width: 200,
-                  )
-                ]);
-              },
-              childCount: 20,
-            ),
+                (context, index) => tunesGridBuilder(context, index, tunesList),
+                childCount: tunesList.length),
           )
         ],
       ),

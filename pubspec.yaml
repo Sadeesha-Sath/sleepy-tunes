@@ -24,9 +24,9 @@ dependencies:
   flutter:
     sdk: flutter
   audio_service: ^0.17.0
-  audioplayers: ^0.18.3
   cupertino_icons: ^1.0.2
   flutter_picker: ^2.0.1
+  just_audio: ^0.7.4+1
   path_provider: ^2.0.1
   provider: ^5.0.0
 
@@ -44,7 +44,9 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/
+    - assets/tunes/
+    - assets/tunes/audio/
+    - assets/tunes/cover_art/
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
