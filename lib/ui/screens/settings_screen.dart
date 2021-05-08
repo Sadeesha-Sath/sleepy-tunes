@@ -38,9 +38,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   [
                     ElevatedButton(
                       onPressed: () {
-                        showPickerNumber(context,
-                            titleString: "Default Timer",
-                            currentTiming: [_hours, _minutes]);
+                        showPickerNumber(context, titleString: "Default Timer", currentTiming: [_hours, _minutes]);
                       },
                       child: ListTile(
                         title: Text("Default Timer"),
@@ -51,11 +49,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       height: 50,
                     ),
                     ElevatedButton(
+                      // TODO Maybe use show modal bottomsheet instead of a showdialog
                       onPressed: () {
                         showDialog(
                           context: context,
-                          builder: (context) => PresetDialog(
-                              presetList: context.watch<Presets>().getPresets),
+                          builder: (context) => PresetDialog(presetList: context.watch<Presets>().getPresets),
                         );
                       },
                       child: ListTile(

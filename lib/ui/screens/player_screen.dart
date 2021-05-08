@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sleep_app/app_logic/models/tune.dart';
 import 'package:sleep_app/ui/ui_constants.dart';
+import 'package:sleep_app/ui/utils/volume_bottom_sheet.dart';
 
 class PlayerScreen extends StatefulWidget {
   final Tune? tune;
@@ -13,6 +14,7 @@ class PlayerScreen extends StatefulWidget {
 }
 
 class _PlayerScreenState extends State<PlayerScreen> {
+  double _volume = 1.0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,11 +40,11 @@ class _PlayerScreenState extends State<PlayerScreen> {
                             widget.tune!.imagePath,
                           ),
                         )
-                        // TODO Add a placeholder image
+                      // TODO Add a placeholder image
                       : null),
-              margin: EdgeInsets.only(bottom: 25),
-              width: 200,
-              height: 200,
+              margin: EdgeInsets.only(bottom: 30),
+              width: 225,
+              height: 240,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -55,7 +57,13 @@ class _PlayerScreenState extends State<PlayerScreen> {
                   elevation: 2,
                   child: IconButton(
                     icon: Icon(Icons.volume_up),
-                    onPressed: () {},
+                    onPressed: () {
+                      showModalBottomSheet(
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(22)),
+                          clipBehavior: Clip.antiAlias,
+                          context: context,
+                          builder: (context) => VolumeBottomSheet());
+                    },
                   ),
                   shape: CircleBorder(
                     side: BorderSide(color: kSecondaryColor),

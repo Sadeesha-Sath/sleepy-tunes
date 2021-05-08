@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:sleep_app/app_logic/providers/presets.dart';
 
 class PresetDialog extends StatefulWidget {
-  final List<Preset> presetList;
+  final Set<Preset> presetList;
 
   PresetDialog({required this.presetList});
 
@@ -66,7 +66,7 @@ class _PresetDialogState extends State<PresetDialog> {
                           }
                         },
                         title: Text(
-                          widget.presetList[index].name,
+                          widget.presetList.elementAt(index).name,
                           style: TextStyle(color: kPrimaryColor),
                         ),
                       );

@@ -3,7 +3,7 @@ import 'package:sleep_app/app_logic/models/preset.dart';
 import 'package:sleep_app/app_logic/logic_handelers/file_handler.dart';
 
 class Presets with ChangeNotifier {
-  List<Preset> _presetList = [];
+  Set<Preset> _presetSet = {};
 
   void loadPresets() async {
     var rawPresetData = await readPresets();
@@ -24,33 +24,33 @@ class Presets with ChangeNotifier {
           timing: preset['timing'],
           trackList: trackList,
         );
-        _presetList.add(newPreset);
+        _presetSet.add(newPreset);
       }
       notifyListeners();
     }
   }
 
-  List<Preset> get getPresets => _presetList;
+  Set<Preset> get getPresets => _presetSet;
 
   void deletePreset(List<int> indexList) {
     // This sorts the indexList to a descending order so that the removing of previous index won't affect the next indexes
     indexList.sort();
     for (int index in indexList.reversed) {
-      _presetList.removeAt(index);
+      _presetSet.remove(_presetSet.elementAt(index));
     }
     notifyListeners();
-    writePresets(_presetList);
+    writePresets(_presetSet.toList());
   }
 
   void deleteAll() {
-    _presetList = [];
+    _presetSet = {};
     writePresets([]);
     notifyListeners();
   }
 
   void addPreset(Preset preset) {
-    _presetList.add(preset);
+    _presetSet.add(preset);
     notifyListeners();
-    writePresets(_presetList);
+    writePresets(_presetSet.toList());
   }
 }

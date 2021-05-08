@@ -45,11 +45,6 @@
     "cover_art": "assets/tunes/cover_art/wave.jpg"
   },
   {
-    "title": "Dreams",
-    "path": "assets/tunes/audio/dreams_unsettled.mp3",
-    "cover_art": "assets/tunes/cover_art/dreams.jpeg"
-  },
-  {
     "title": "Noise - High Pitch",
     "path": "assets/tunes/audio/noise_high.mp3",
     "cover_art": "assets/tunes/cover_art/noise.jpg"

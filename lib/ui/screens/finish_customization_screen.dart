@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sleep_app/app_logic/models/preset.dart';
 import 'package:sleep_app/app_logic/providers/default_timer.dart';
-import 'package:sleep_app/app_logic/providers/presets.dart';
 import 'package:sleep_app/ui/screens/player_screen.dart';
 import 'package:sleep_app/ui/ui_constants.dart';
+import 'package:sleep_app/ui/utils/save_preset_dialog.dart';
 import 'package:sleep_app/ui/utils/timer_picker.dart';
 import 'package:sleep_app/ui/utils/track_card.dart';
 import 'package:provider/provider.dart';
@@ -130,87 +129,11 @@ class _FinishCustomizationScreenState extends State<FinishCustomizationScreen> {
                   iconSize: 31.5,
                   color: Colors.lightBlueAccent.shade400,
                   icon: Icon(Icons.save),
-                  onPressed: () {
-                    // TODO Add a variable default name
-                    var textController = TextEditingController(text: "Preset 1");
+                  onPressed: () {                    
                     // TODO Further improvements to the ui + refractor
                     showDialog(
                         context: context,
-                        builder: (context) {
-                          return Dialog(
-                            insetPadding: EdgeInsets.symmetric(horizontal: 40, vertical: 120),
-                            clipBehavior: Clip.hardEdge,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
-                              child: ListView(
-                                shrinkWrap: true,
-                                children: [
-                                  Container(
-                                    margin: EdgeInsets.only(top: 5, bottom: 15),
-                                    child: Center(
-                                      child: Text(
-                                        "Save Preset",
-                                        style: TextStyle(fontSize: 23, fontWeight: FontWeight.w400),
-                                      ),
-                                    ),
-                                  ),
-                                  TextFormField(
-                                    autofocus: true,
-                                    keyboardAppearance: Brightness.dark,
-                                    style: TextStyle(fontSize: 16),
-                                    controller: textController,
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(top: 12),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Spacer(
-                                          flex: 8,
-                                        ),
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Text(
-                                            "Cancel",
-                                            style: TextStyle(
-                                              fontSize: 16.5,
-                                              color: Colors.redAccent,
-                                            ),
-                                          ),
-                                        ),
-                                        Spacer(),
-                                        TextButton(
-                                            onPressed: () {
-                                              context.read<Presets>().addPreset(
-                                                    Preset(
-                                                      name: textController.value.text,
-                                                      timing: [1, 54],
-                                                      trackList: [
-                                                        Track(
-                                                            trackImagePath: '1',
-                                                            trackName: '1',
-                                                            trackPath: '1',
-                                                            volume: 0.6)
-                                                      ],
-                                                    ),
-                                                  );
-                                              Navigator.pop(context);
-                                            },
-                                            child: Text(
-                                              "Save",
-                                              style: TextStyle(fontSize: 16.5),
-                                            ))
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          );
-                        });
+                        builder: (context) => SavePresetDialog());
                   },
                 ),
               ),
