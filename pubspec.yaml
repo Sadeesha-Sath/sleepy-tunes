@@ -44,6 +44,7 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/
     - assets/tunes/
     - assets/tunes/audio/
     - assets/tunes/cover_art/

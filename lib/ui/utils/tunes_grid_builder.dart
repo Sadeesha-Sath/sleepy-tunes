@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:sleep_app/app_logic/models/tune.dart';
+import 'package:sleep_app/app_logic/providers/default_timer.dart';
 import 'package:sleep_app/ui/screens/player_screen.dart';
+import 'package:provider/provider.dart';
 
-Widget tunesGridBuilder(BuildContext context, int index, Set<Tune> tunesSet) {
-  if (tunesSet.isNotEmpty) {
+Widget tunesGridBuilder(BuildContext context, int index, List<Tune> tunesList) {
+  if (tunesList.isNotEmpty) {
     return GestureDetector(
       onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => PlayerScreen(tune: tunesSet.elementAt(index)),
+            builder: (context) => PlayerScreen(
+              tune: tunesList[index],
+              timing: context.watch<DefaultTimer>().getTiming,
+            ),
           ),
         );
       },
@@ -27,7 +32,7 @@ Widget tunesGridBuilder(BuildContext context, int index, Set<Tune> tunesSet) {
                 borderRadius: BorderRadius.circular(28),
               ),
               child: Image(
-                image: AssetImage(tunesSet.elementAt(index).imagePath),
+                image: AssetImage(tunesList[index].imagePath),
                 alignment: Alignment.topCenter,
                 fit: BoxFit.fill,
                 isAntiAlias: true,
@@ -37,7 +42,7 @@ Widget tunesGridBuilder(BuildContext context, int index, Set<Tune> tunesSet) {
           Positioned.directional(
             textDirection: TextDirection.ltr,
             child: Text(
-              tunesSet.elementAt(index).name,
+              tunesList[index].name,
               textAlign: TextAlign.center,
             ),
             bottom: 38,

@@ -7,6 +7,7 @@ ThemeData darkTheme = ThemeData.dark().copyWith(
   primaryColor: Colors.blue.shade500,
   backgroundColor: kBackgroundColor,
   accentColor: Colors.lightBlueAccent.shade400,
+  buttonBarTheme: ButtonBarThemeData(buttonPadding: EdgeInsets.zero),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
       // backgroundColor: kBottomNavBarBackgroundColor,
       selectedItemColor: Colors.lightBlueAccent.shade700),

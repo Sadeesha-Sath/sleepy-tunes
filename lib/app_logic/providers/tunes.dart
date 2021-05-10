@@ -4,7 +4,7 @@ import 'package:sleep_app/app_logic/models/tune.dart';
 
 class Tunes with ChangeNotifier {
   // Future jsonString;
-  Set<Tune> _tunesSet = {};
+  List<Tune> _tunesList = [];
 
   // Tunes({required this.jsonString}) {
   //   jsonString.then(
@@ -32,12 +32,12 @@ class Tunes with ChangeNotifier {
         imagePath: tune['cover_art'],
         name: tune['title'],
       );
-      _tunesSet.add(newTune);
+      _tunesList.add(newTune);
     }
     notifyListeners();
   }
 
-  Set<Tune> get getTunes => _tunesSet;
+  List<Tune> get getTunes => _tunesList;
 
   // dynamic get getString => jsonString;
 }

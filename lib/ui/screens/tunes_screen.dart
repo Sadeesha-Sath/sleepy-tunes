@@ -13,7 +13,7 @@ class TunesScreen extends StatefulWidget {
 class _TunesScreenState extends State<TunesScreen> {
   @override
   Widget build(BuildContext context) {
-    final Set<Tune> tunesSet = context.watch<Tunes>().getTunes;
+    final List<Tune> tunesList = context.watch<Tunes>().getTunes;
     final ScrollController _scrollController = ScrollController();
     return Container(
       padding: EdgeInsets.only(top: 10, left: 8, right: 8),
@@ -38,8 +38,8 @@ class _TunesScreenState extends State<TunesScreen> {
               childAspectRatio: 1.05,
             ),
             delegate: SliverChildBuilderDelegate(
-                (context, index) => tunesGridBuilder(context, index, tunesSet),
-                childCount: tunesSet.length),
+                (context, index) => tunesGridBuilder(context, index, tunesList),
+                childCount: tunesList.length),
           )
         ],
       ),

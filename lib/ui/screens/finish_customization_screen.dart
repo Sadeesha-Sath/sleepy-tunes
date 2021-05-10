@@ -156,7 +156,7 @@ class _FinishCustomizationScreenState extends State<FinishCustomizationScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => PlayerScreen(),
+                        builder: (context) => PlayerScreen(timing: context.watch<DefaultTimer>().getTiming,),
                       ),
                     );
                   },
