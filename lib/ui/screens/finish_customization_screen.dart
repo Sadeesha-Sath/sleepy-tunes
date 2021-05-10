@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sleep_app/app_logic/providers/default_timer.dart';
 import 'package:sleep_app/ui/screens/player_screen.dart';
 import 'package:sleep_app/ui/ui_constants.dart';
-import 'package:sleep_app/ui/utils/save_preset_dialog.dart';
+import 'package:sleep_app/ui/utils/save_preset_bottom_sheet.dart';
 import 'package:sleep_app/ui/utils/timer_picker.dart';
 import 'package:sleep_app/ui/utils/track_card.dart';
 import 'package:provider/provider.dart';
@@ -129,11 +129,16 @@ class _FinishCustomizationScreenState extends State<FinishCustomizationScreen> {
                   iconSize: 31.5,
                   color: Colors.lightBlueAccent.shade400,
                   icon: Icon(Icons.save),
-                  onPressed: () {                    
+                  onPressed: () {
                     // TODO Further improvements to the ui + refractor
-                    showDialog(
+                    showModalBottomSheet(
+                        isScrollControlled: true,
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25))),
+                        clipBehavior: Clip.antiAlias,
                         context: context,
-                        builder: (context) => SavePresetDialog());
+                        builder: (context) => SavePresetBottomSheet());
                   },
                 ),
               ),
@@ -156,7 +161,9 @@ class _FinishCustomizationScreenState extends State<FinishCustomizationScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => PlayerScreen(timing: context.watch<DefaultTimer>().getTiming,),
+                        builder: (context) => PlayerScreen(
+                          timing: context.watch<DefaultTimer>().getTiming,
+                        ),
                       ),
                     );
                   },

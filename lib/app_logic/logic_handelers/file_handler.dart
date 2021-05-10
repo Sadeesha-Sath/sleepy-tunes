@@ -31,7 +31,7 @@ Future<List<int>> readTimer() async {
   } catch (e) {
     // ! Debug Purposes
     print(e);
-    writeTimer('{"hours": 1, "minutes": 1}');
+    writeTimer('{"hours": 1, "minutes": 0}');
     return readTimer();
   }
 }

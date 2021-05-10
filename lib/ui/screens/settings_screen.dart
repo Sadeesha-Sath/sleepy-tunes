@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sleep_app/ui/utils/preset_dialog.dart';
+import 'package:sleep_app/ui/utils/preset_bottom_sheet.dart';
 import 'package:sleep_app/app_logic/providers/default_timer.dart';
 import 'package:sleep_app/app_logic/providers/presets.dart';
 import 'package:sleep_app/ui/ui_constants.dart';
@@ -37,6 +37,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 delegate: SliverChildListDelegate(
                   [
                     ElevatedButton(
+                      // TODO Maybe use show modal bottomsheet instead of a showdialog
                       onPressed: () {
                         showPickerNumber(context, titleString: "Default Timer", currentTiming: [_hours, _minutes]);
                       },
@@ -49,12 +50,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       height: 50,
                     ),
                     ElevatedButton(
-                      // TODO Maybe use show modal bottomsheet instead of a showdialog
                       onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (context) => PresetDialog(presetList: context.watch<Presets>().getPresets),
-                        );
+                        showModalBottomSheet(
+                            isScrollControlled: true,
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25))),
+                            clipBehavior: Clip.antiAlias,
+                            context: context,
+                            builder: (context) => PresetBottomSheet(presetList: context.watch<Presets>().getPresets));
                       },
                       child: ListTile(
                         title: Text("Clear Presets"),

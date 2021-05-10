@@ -41,14 +41,20 @@ class _PlayerScreenState extends State<PlayerScreen> {
   //   super.dispose();
   // }
 
+  // @override
+  // void dispose() {
+  //   context.read<BottomAppBarData>().callNotifyListners();
+  //   super.dispose();
+  // }
+
   @override
   void initState() {
     bottomAppBarData = context.read<BottomAppBarData>();
     _simplePlayer = context.read<SimplePlayer>();
     if (widget.tune != null) {
       assert(widget.tracks == null);
-
       try {
+        // TODO Find a better way to do this
         if (_simplePlayer.isTune) {
           if (widget.tune != _simplePlayer.currentTune) {
             try {
@@ -58,6 +64,9 @@ class _PlayerScreenState extends State<PlayerScreen> {
             }
             _simplePlayer.loadData(isTune: true, tune: widget.tune);
             _simplePlayer.onStart();
+            Future.delayed(Duration.zero, () async {
+              bottomAppBarData.changePlayingState(true);
+            });
           } else {
             _isPlaying = _simplePlayer.isPlaying;
           }
@@ -66,6 +75,9 @@ class _PlayerScreenState extends State<PlayerScreen> {
         print(e);
         _simplePlayer.loadData(isTune: true, tune: widget.tune);
         _simplePlayer.onStart();
+        Future.delayed(Duration.zero, () async {
+          bottomAppBarData.changePlayingState(true);
+        });
       }
 
       // AudioPlayerTask().onStart({"isTune": true, "tune": widget.tune});
@@ -79,7 +91,11 @@ class _PlayerScreenState extends State<PlayerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.tune != null) bottomAppBarData.changeData(widget.tune!.name, widget.tune!.imagePath);
+    if (widget.tune != null) {
+      Future.delayed(Duration.zero, () async {
+        bottomAppBarData.changeData(widget.tune!.name, widget.tune!.imagePath);
+      });
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,

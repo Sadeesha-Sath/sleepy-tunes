@@ -15,11 +15,9 @@ class SimplePlayer {
   // SimplePlayer({required this.timing});
 
   void loadData({required bool isTune, Tune? tune, List<Tune>? tracks}) async {
-    print(_tune);
     this._isTune = isTune;
     this._tune = tune;
     this._tracks = tracks;
-    print(_tune);
   }
 
   Future onStart() async {

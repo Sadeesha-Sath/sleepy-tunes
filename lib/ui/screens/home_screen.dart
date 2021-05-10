@@ -40,6 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
             tileColor: Colors.lightBlue.shade900,
             contentPadding: EdgeInsets.only(left: 10),
             leading: Container(
+              margin: EdgeInsets.only(left: 10, right: 10),
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage(_bottomAppBarData.imagePath ?? 'assets/placeholder.jpg'), fit: BoxFit.cover)),
@@ -48,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             title: Text(_bottomAppBarData.title ?? "Hey! We're lonely over here. Let's play something..."),
             trailing: SizedBox(
-              width: 100,
+              width: 110,
               child: Row(
                 children: [
                   IconButton(
@@ -58,12 +59,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         size: 32,
                         color: kPrimaryColor,
                       ),
-                      onPressed: _bottomAppBarData.isEnabled
-                          ? () {
-                              _bottomAppBarData.isPlaying ? _simplePlayer.onPause() : _simplePlayer.onResume();
-                              context.read<BottomAppBarData>().changePlayingState();
-                            }
-                          : null),
+                      onPressed: () {
+                        _bottomAppBarData.isPlaying ? _simplePlayer.onPause() : _simplePlayer.onResume();
+                        context.read<BottomAppBarData>().changePlayingState();
+                      }),
                   IconButton(
                       splashRadius: 25,
                       icon: Icon(
@@ -71,13 +70,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         size: 32,
                         color: kSecondaryColor,
                       ),
-                      onPressed: _bottomAppBarData.isEnabled
-                          ? () {
-                              _simplePlayer.dispose();
-                              context.read<BottomAppBarData>().clearData();
-                              context.read<BottomAppBarData>().changeEnableButtons();
-                            }
-                          : null)
+                      onPressed: () {
+                        _simplePlayer.dispose();
+                        context.read<BottomAppBarData>().changePlayingState(false);
+                        context.read<BottomAppBarData>().clearData();
+                      })
                 ],
               ),
             ),

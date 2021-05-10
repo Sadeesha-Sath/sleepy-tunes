@@ -16,7 +16,7 @@ class _VolumeBottomSheetState extends State<VolumeBottomSheet> {
   Widget build(BuildContext context) {
     Volume _volume = context.watch<Volume>();
     return Container(
-      // color: Colors.lightBlue.shade800,
+      color: kBackgroundColor,
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
       height: 180,
       child: Column(

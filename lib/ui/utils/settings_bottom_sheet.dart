@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sleep_app/app_logic/audio_players/simple_player.dart';
+import 'package:sleep_app/ui/ui_constants.dart';
 
 class SettingsBottomSheet extends StatefulWidget {
   final SimplePlayer player;
@@ -14,6 +15,7 @@ class _SettingsBottomSheetState extends State<SettingsBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: kBackgroundColor,
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
       height: 180,
       child: Column(

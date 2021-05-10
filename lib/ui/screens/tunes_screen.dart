@@ -37,8 +37,7 @@ class _TunesScreenState extends State<TunesScreen> {
               crossAxisSpacing: 8,
               childAspectRatio: 1.05,
             ),
-            delegate: SliverChildBuilderDelegate(
-                (context, index) => tunesGridBuilder(context, index, tunesList),
+            delegate: SliverChildBuilderDelegate((context, index) => tunesGridBuilder(context, index, tunesList),
                 childCount: tunesList.length),
           )
         ],
