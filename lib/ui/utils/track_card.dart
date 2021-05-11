@@ -24,8 +24,7 @@ class TrackCard extends StatelessWidget {
             height: 100,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage(
-                    "https://www.astronomy.cafe/media/posts/16/responsive/solsticeflare-xxxl.jpg"),
+                image: NetworkImage("https://www.astronomy.cafe/media/posts/16/responsive/solsticeflare-xxxl.jpg"),
                 alignment: Alignment.centerLeft,
                 fit: BoxFit.cover,
               ),

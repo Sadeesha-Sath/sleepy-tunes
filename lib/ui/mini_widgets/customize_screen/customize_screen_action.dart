@@ -20,32 +20,34 @@ class CustomizeScreenAction extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => PresetScreen(presetSet: context.watch<Presets>().getPresets),
+                  builder: (context) => PresetScreen(),
                 ),
               );
             },
           ),
         ),
-        Positioned(
-          top: presetCount > 9 ? 4 : 5,
-          right: presetCount > 9 ? 6 : 9,
-          child: Container(
-            padding: EdgeInsets.all(presetCount > 9 ? 3 : 4),
-            child: Center(
-              child: Text(
-                presetCount.toString(),
-                style: TextStyle(
-                  fontSize: presetCount > 9 ? 12 : 13,
+        presetCount != 0
+            ? Positioned(
+                top: presetCount > 9 ? 4 : 5,
+                right: presetCount > 9 ? 6 : 9,
+                child: Container(
+                  padding: EdgeInsets.all(presetCount > 9 ? 3 : 4),
+                  child: Center(
+                    child: Text(
+                      presetCount.toString(),
+                      style: TextStyle(
+                        fontSize: presetCount > 9 ? 12 : 13,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.redAccent,
+                  ),
                 ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.redAccent,
-            ),
-          ),
-        )
+              )
+            : Container(),
       ],
     );
   }

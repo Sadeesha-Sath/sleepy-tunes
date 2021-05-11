@@ -22,39 +22,6 @@ class PlayerScreen extends StatelessWidget {
     bool _isPlaying = true;
     _bottomAppBarData = context.read<BottomAppBarData>();
     _simplePlayer = context.read<SimplePlayer>();
-    initialization(_isPlaying);
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        shadowColor: Colors.transparent,
-        title: Text("Good Night!"),
-      ),
-      backgroundColor: kBackgroundColor,
-      body: Container(
-        padding: EdgeInsets.only(top: 30),
-        alignment: Alignment.center,
-        child: Column(
-          children: [
-            PlayerScreenImage(tune: tune!),
-            Text(
-              tune != null ? tune!.name : "Custom Track",
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(
-              height: 25,
-            ),
-            PlayerControlsRow(
-              simplePlayer: _simplePlayer,
-              isPlaying: _isPlaying,
-              bottomAppBarData: _bottomAppBarData,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  void initialization(bool _isPlaying) {
     if (tune != null) {
       assert(tracks == null);
       try {
@@ -93,5 +60,35 @@ class PlayerScreen extends StatelessWidget {
       assert(tracks != null);
       assert(tune == null);
     }
+
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        shadowColor: Colors.transparent,
+        title: Text("Good Night!"),
+      ),
+      backgroundColor: kBackgroundColor,
+      body: Container(
+        padding: EdgeInsets.only(top: 30),
+        alignment: Alignment.center,
+        child: Column(
+          children: [
+            PlayerScreenImage(tune: tune!),
+            Text(
+              tune != null ? tune!.name : "Custom Track",
+              style: TextStyle(fontSize: 16),
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            PlayerControlsRow(
+              simplePlayer: _simplePlayer,
+              isPlaying: _isPlaying,
+              bottomAppBarData: _bottomAppBarData,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

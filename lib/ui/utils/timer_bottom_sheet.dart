@@ -26,7 +26,7 @@ class _TimerBottomSheetState extends State<TimerBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 440,
+      height: 460,
       color: kBackgroundColor,
       padding: EdgeInsets.only(top: 20, bottom: 15),
       child: Padding(
@@ -70,10 +70,10 @@ class _TimerBottomSheetState extends State<TimerBottomSheet> {
                   Spacer(),
                   SizedBox(
                     width: 100,
-                    height: 200,
+                    height: 230,
                     child: Center(
                       child: CupertinoPicker(
-                        diameterRatio: 1.1,
+                        diameterRatio: 1.12,
                         scrollController: FixedExtentScrollController(initialItem: _hourValue),
                         looping: true,
                         itemExtent: 28,
@@ -105,10 +105,10 @@ class _TimerBottomSheetState extends State<TimerBottomSheet> {
                   Spacer(),
                   SizedBox(
                     width: 100,
-                    height: 210,
+                    height: 230,
                     child: Center(
                       child: CupertinoPicker(
-                        diameterRatio: 1.1,
+                        diameterRatio: 1.12,
                         scrollController: FixedExtentScrollController(initialItem: _minuteValue),
                         looping: true,
                         itemExtent: 28,
@@ -132,7 +132,7 @@ class _TimerBottomSheetState extends State<TimerBottomSheet> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 15),
+              margin: EdgeInsets.only(top: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
