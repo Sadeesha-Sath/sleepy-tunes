@@ -73,6 +73,7 @@ class _TimerBottomSheetState extends State<TimerBottomSheet> {
                     height: 200,
                     child: Center(
                       child: CupertinoPicker(
+                        diameterRatio: 1.1,
                         scrollController: FixedExtentScrollController(initialItem: _hourValue),
                         looping: true,
                         itemExtent: 28,
@@ -107,6 +108,7 @@ class _TimerBottomSheetState extends State<TimerBottomSheet> {
                     height: 210,
                     child: Center(
                       child: CupertinoPicker(
+                        diameterRatio: 1.1,
                         scrollController: FixedExtentScrollController(initialItem: _minuteValue),
                         looping: true,
                         itemExtent: 28,

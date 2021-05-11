@@ -1,3 +1,5 @@
+import 'package:sleep_app/app_logic/models/track.dart';
+
 class Preset {
   String name;
   List<Track> trackList;
@@ -10,28 +12,6 @@ class Preset {
       "name": name,
       "timing": timing,
       "trackList": trackList.map((e) => e.exportTracks()).toList(),
-    };
-  }
-}
-
-class Track {
-  String trackName;
-  String trackPath;
-  String trackImagePath;
-  double volume;
-
-  Track(
-      {required this.trackImagePath,
-      required this.trackName,
-      required this.trackPath,
-      required this.volume});
-
-  Map<String, Object> exportTracks() {
-    return {
-      "trackName": trackName,
-      "trackImagePath": trackImagePath,
-      "trackPath": trackPath,
-      "volume": volume
     };
   }
 }

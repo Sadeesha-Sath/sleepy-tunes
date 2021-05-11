@@ -1,4 +1,5 @@
 import 'package:just_audio/just_audio.dart';
+import 'package:sleep_app/app_logic/models/track.dart';
 import 'package:sleep_app/app_logic/models/tune.dart';
 import 'dart:async';
 
@@ -7,14 +8,14 @@ class SimplePlayer {
   // List<int> timing;
   late bool _isTune;
   Tune? _tune;
-  List<Tune>? _tracks;
+  List<Track>? _tracks;
   late AudioPlayer _player;
   List<AudioPlayer> _playerList = [];
   // var _stopWatch = Stopwatch();
 
   // SimplePlayer({required this.timing});
 
-  void loadData({required bool isTune, Tune? tune, List<Tune>? tracks}) async {
+  void loadData({required bool isTune, Tune? tune, List<Track>? tracks}) async {
     this._isTune = isTune;
     this._tune = tune;
     this._tracks = tracks;

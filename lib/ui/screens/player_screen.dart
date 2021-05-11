@@ -1,101 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:sleep_app/app_logic/audio_players/simple_player.dart';
+import 'package:sleep_app/app_logic/models/track.dart';
 import 'package:sleep_app/app_logic/models/tune.dart';
 import 'package:sleep_app/app_logic/providers/bottom_appbar_data.dart';
+import 'package:sleep_app/ui/mini_widgets/player_screen/player_controls_row.dart';
 import 'package:sleep_app/ui/ui_constants.dart';
-import 'package:sleep_app/ui/utils/volume_bottom_sheet.dart';
-import 'package:sleep_app/ui/utils/settings_bottom_sheet.dart';
 import 'package:provider/provider.dart';
+import 'package:sleep_app/ui/mini_widgets/player_screen/player_screen_image.dart';
 
-class PlayerScreen extends StatefulWidget {
+class PlayerScreen extends StatelessWidget {
   final Tune? tune;
-  final List<Tune?>? tracks;
-  final List<int> timing;
+  final List<Track?>? tracks;
+  final List<dynamic> timing;
+  late final BottomAppBarData _bottomAppBarData;
+  late final SimplePlayer _simplePlayer;
 
   PlayerScreen({this.tune, this.tracks, required this.timing});
 
   @override
-  _PlayerScreenState createState() => _PlayerScreenState();
-}
-// TODO Find WTF is going on with this audio player, maybe, try using the audio player first and then add the background service
-
-class _PlayerScreenState extends State<PlayerScreen> {
-  bool _isPlaying = true;
-  var bottomAppBarData;
-  late SimplePlayer _simplePlayer;
-  // late Timer timer;
-  // @override
-  // void initState() {
-  //   startAudioTask();
-  //   super.initState();
-  // }
-
-  // void startAudioTask() async {
-  //   await AudioService.start(backgroundTaskEntrypoint: _entrypoint);
-  // }
-
-  // @override
-  // void dispose() {
-  // _simplePlayer.dispose();
-  // timer.cancel();
-  //   super.dispose();
-  // }
-
-  // @override
-  // void dispose() {
-  //   context.read<BottomAppBarData>().callNotifyListners();
-  //   super.dispose();
-  // }
-
-  @override
-  void initState() {
-    bottomAppBarData = context.read<BottomAppBarData>();
-    _simplePlayer = context.read<SimplePlayer>();
-    if (widget.tune != null) {
-      assert(widget.tracks == null);
-      try {
-        // TODO Find a better way to do this
-        if (_simplePlayer.isTune) {
-          if (widget.tune != _simplePlayer.currentTune) {
-            try {
-              _simplePlayer.dispose();
-            } catch (e) {
-              print(e);
-            }
-            _simplePlayer.loadData(isTune: true, tune: widget.tune);
-            _simplePlayer.onStart();
-            Future.delayed(Duration.zero, () async {
-              bottomAppBarData.changePlayingState(true);
-            });
-          } else {
-            _isPlaying = _simplePlayer.isPlaying;
-          }
-        }
-      } catch (e) {
-        print(e);
-        _simplePlayer.loadData(isTune: true, tune: widget.tune);
-        _simplePlayer.onStart();
-        Future.delayed(Duration.zero, () async {
-          bottomAppBarData.changePlayingState(true);
-        });
-      }
-
-      // AudioPlayerTask().onStart({"isTune": true, "tune": widget.tune});
-
-    } else {
-      assert(widget.tracks != null);
-      // AudioPlayerTask().onStart({"isTune": false, "tracks": widget.tracks});
-    }
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    if (widget.tune != null) {
-      Future.delayed(Duration.zero, () async {
-        bottomAppBarData.changeData(widget.tune!.name, widget.tune!.imagePath);
-      });
-    }
+    bool _isPlaying = true;
+    _bottomAppBarData = context.read<BottomAppBarData>();
+    _simplePlayer = context.read<SimplePlayer>();
+    initialization(_isPlaying);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -108,108 +35,63 @@ class _PlayerScreenState extends State<PlayerScreen> {
         alignment: Alignment.center,
         child: Column(
           children: [
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.green,
-                shape: BoxShape.circle,
-                image: widget.tune != null
-                    ? DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage(
-                          widget.tune!.imagePath,
-                        ),
-                      )
-                    : DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage('assets/placeholder.jpg'),
-                      ),
-              ),
-              margin: EdgeInsets.only(bottom: 12),
-              width: 225,
-              height: 240,
-            ),
+            PlayerScreenImage(tune: tune!),
             Text(
-              widget.tune != null ? widget.tune!.name : "Hello",
+              tune != null ? tune!.name : "Custom Track",
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(
               height: 25,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Spacer(flex: 5),
-                Material(
-                  color: kBackgroundColor,
-                  shadowColor: kBackgroundColor,
-                  clipBehavior: Clip.antiAlias,
-                  elevation: 2,
-                  child: IconButton(
-                    icon: Icon(Icons.volume_up),
-                    onPressed: () {
-                      showModalBottomSheet(
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25))),
-                          clipBehavior: Clip.antiAlias,
-                          context: context,
-                          builder: (context) => VolumeBottomSheet(_simplePlayer));
-                    },
-                  ),
-                  shape: CircleBorder(
-                    side: BorderSide(color: kSecondaryColor),
-                  ),
-                ),
-                Spacer(),
-                Material(
-                  color: kBackgroundColor,
-                  shadowColor: kBackgroundColor,
-                  clipBehavior: Clip.antiAlias,
-                  elevation: 5,
-                  child: IconButton(
-                    padding: EdgeInsets.all(15),
-                    iconSize: 33,
-                    icon: Icon(_isPlaying ? Icons.pause : Icons.play_arrow),
-                    onPressed: () {
-                      _isPlaying ? _simplePlayer.onPause() : _simplePlayer.onResume();
-                      setState(() {
-                        _isPlaying = !_isPlaying;
-                      });
-                      bottomAppBarData.changePlayingState();
-                    },
-                  ),
-                  shape: CircleBorder(
-                    side: BorderSide(color: kSecondaryColor),
-                  ),
-                ),
-                Spacer(),
-                Material(
-                  color: kBackgroundColor,
-                  shadowColor: kBackgroundColor,
-                  clipBehavior: Clip.antiAlias,
-                  elevation: 2,
-                  child: IconButton(
-                    icon: Icon(Icons.settings),
-                    onPressed: () {
-                      showModalBottomSheet(
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25))),
-                          clipBehavior: Clip.antiAlias,
-                          context: context,
-                          builder: (context) => SettingsBottomSheet(_simplePlayer));
-                    },
-                  ),
-                  shape: CircleBorder(
-                    side: BorderSide(color: kSecondaryColor),
-                  ),
-                ),
-                Spacer(flex: 5),
-              ],
-            )
+            PlayerControlsRow(
+              simplePlayer: _simplePlayer,
+              isPlaying: _isPlaying,
+              bottomAppBarData: _bottomAppBarData,
+            ),
           ],
         ),
       ),
     );
+  }
+
+  void initialization(bool _isPlaying) {
+    if (tune != null) {
+      assert(tracks == null);
+      try {
+        // TODO Find a better way to do this
+        if (_simplePlayer.isTune) {
+          if (tune != _simplePlayer.currentTune) {
+            try {
+              _simplePlayer.dispose();
+            } catch (e) {
+              print(e);
+            }
+            _simplePlayer.loadData(isTune: true, tune: tune);
+            _simplePlayer.onStart();
+            Future.delayed(Duration.zero, () async {
+              _bottomAppBarData.changeData(tune!.name, tune!.imagePath);
+            });
+            Future.delayed(Duration.zero, () async {
+              _bottomAppBarData.changePlayingState(true);
+            });
+          } else {
+            _isPlaying = _simplePlayer.isPlaying;
+          }
+        }
+      } catch (e) {
+        print(e);
+        _simplePlayer.loadData(isTune: true, tune: tune);
+        _simplePlayer.onStart();
+        Future.delayed(Duration.zero, () async {
+          _bottomAppBarData.changeData(tune!.name, tune!.imagePath);
+        });
+        Future.delayed(Duration.zero, () async {
+          _bottomAppBarData.changePlayingState(true);
+        });
+      }
+    } else {
+      assert(tracks != null);
+      assert(tune == null);
+    }
   }
 }

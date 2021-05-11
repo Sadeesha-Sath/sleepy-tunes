@@ -1,45 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:sleep_app/ui/ui_constants.dart';
-import 'package:sleep_app/ui/utils/tunes_grid_builder.dart';
-import 'package:sleep_app/app_logic/models/tune.dart';
-import 'package:sleep_app/app_logic/providers/tunes.dart';
-import 'package:provider/provider.dart';
+import 'package:sleep_app/ui/utils/custom_sliver_appbar.dart';
+import 'package:sleep_app/ui/mini_widgets/tunes_screen/tunes_screen_sliver_grid.dart';
 
-class TunesScreen extends StatefulWidget {
-  @override
-  _TunesScreenState createState() => _TunesScreenState();
-}
-
-class _TunesScreenState extends State<TunesScreen> {
+class TunesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final List<Tune> tunesList = context.watch<Tunes>().getTunes;
-    final ScrollController _scrollController = ScrollController();
     return Container(
       padding: EdgeInsets.only(top: 10, left: 8, right: 8),
       color: kBackgroundColor,
       child: CustomScrollView(
-        controller: _scrollController,
         slivers: [
-          SliverAppBar(
-            floating: true,
-            title: Text("Sleepy Tunes"),
-            centerTitle: true,
-            elevation: 1,
+          CustomSliverAppBar(
+            title: "Sleepy Tunes",
             expandedHeight: 120,
-            shadowColor: kBackgroundColor,
-            backgroundColor: Colors.transparent,
           ),
-          SliverGrid(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              // maxCrossAxisExtent: 300,
-              crossAxisCount: 2,
-              crossAxisSpacing: 8,
-              childAspectRatio: 1.05,
-            ),
-            delegate: SliverChildBuilderDelegate((context, index) => tunesGridBuilder(context, index, tunesList),
-                childCount: tunesList.length),
-          )
+          TunesScreenSliverGrid()
         ],
       ),
     );
