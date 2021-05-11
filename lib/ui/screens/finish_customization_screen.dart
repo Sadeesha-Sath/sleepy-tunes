@@ -3,7 +3,7 @@ import 'package:sleep_app/app_logic/providers/default_timer.dart';
 import 'package:sleep_app/ui/screens/player_screen.dart';
 import 'package:sleep_app/ui/ui_constants.dart';
 import 'package:sleep_app/ui/utils/save_preset_bottom_sheet.dart';
-import 'package:sleep_app/ui/utils/timer_picker.dart';
+import 'package:sleep_app/ui/utils/timer_bottom_sheet.dart';
 import 'package:sleep_app/ui/utils/track_card.dart';
 import 'package:provider/provider.dart';
 
@@ -14,6 +14,7 @@ class FinishCustomizationScreen extends StatefulWidget {
 
 class _FinishCustomizationScreenState extends State<FinishCustomizationScreen> {
   double _volumeValue = 0.5;
+  List<int>? timing;
   List<int> defaultTiming = [];
 
   // @override
@@ -101,12 +102,28 @@ class _FinishCustomizationScreenState extends State<FinishCustomizationScreen> {
                         ),
                         child: InkWell(
                           onTap: () {
-                            showPickerNumber(context, titleString: "Timer");
+                            // showPickerNumber(context, titleString: "Timer");
+                            showModalBottomSheet(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25))),
+                                clipBehavior: Clip.antiAlias,
+                                context: context,
+                                builder: (context) => TimerBottomSheet(
+                                      isDefault: false,
+                                      initialValues: timing ?? defaultTiming,
+                                      onSave: (List<int> newTime) {
+                                        setState(() {
+                                          timing = newTime;
+                                        });
+                                      },
+                                    ));
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(15),
                             child: Center(
-                              child: Text("${defaultTiming[0]} Hours : ${defaultTiming[1]} Minutes"),
+                              child: Text(
+                                  "${timing?[0] ?? defaultTiming[0]} Hours : ${timing?[1] ?? defaultTiming[1]} Minutes"),
                             ),
                           ),
                         ),

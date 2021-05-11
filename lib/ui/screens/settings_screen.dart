@@ -4,7 +4,7 @@ import 'package:sleep_app/app_logic/providers/default_timer.dart';
 import 'package:sleep_app/app_logic/providers/presets.dart';
 import 'package:sleep_app/ui/ui_constants.dart';
 import 'package:provider/provider.dart';
-import 'package:sleep_app/ui/utils/timer_picker.dart';
+import 'package:sleep_app/ui/utils/timer_bottom_sheet.dart';
 
 class SettingsScreen extends StatefulWidget {
   @override
@@ -17,8 +17,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    _hours = context.watch<DefaultTimer>().getTiming[0];
-    _minutes = context.watch<DefaultTimer>().getTiming[1];
+    var _defaultTimings = context.watch<DefaultTimer>().getTiming;
+    _hours = _defaultTimings[0];
+    _minutes = _defaultTimings[1];
     return Container(
       padding: EdgeInsets.only(left: 20, right: 20, top: 10),
       color: kBackgroundColor,
@@ -38,8 +39,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   [
                     ElevatedButton(
                       // TODO Maybe use show modal bottomsheet instead of a showdialog
+                      // onPressed: () {
+                      //   showPickerNumber(context, titleString: "Default Timer", currentTiming: [_hours, _minutes]);
+                      // },
                       onPressed: () {
-                        showPickerNumber(context, titleString: "Default Timer", currentTiming: [_hours, _minutes]);
+                        showModalBottomSheet(
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25))),
+                            clipBehavior: Clip.antiAlias,
+                            context: context,
+                            builder: (context) => TimerBottomSheet(
+                                  initialValues: _defaultTimings,
+                                  isDefault: true,
+                                  onSave: (List<int> newTiming) {
+                                    context.read<DefaultTimer>().changeTiming(newTiming);
+                                  },
+                                ));
                       },
                       child: ListTile(
                         title: Text("Default Timer"),

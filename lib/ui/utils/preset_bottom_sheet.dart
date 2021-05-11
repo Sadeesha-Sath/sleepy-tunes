@@ -97,7 +97,7 @@ class _PresetBottomSheetState extends State<PresetBottomSheet> {
                     },
                   )
                 : Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 30),
+                    padding: const EdgeInsets.only(top: 20, bottom: 30),
                     child: Text(
                       "Save some Presets to get started!!",
                       style: TextStyle(fontSize: 17),
