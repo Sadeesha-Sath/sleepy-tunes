@@ -1,5 +1,5 @@
 name: sleep_app
-description: A new Flutter project.
+description: A flutter app for a better sleeping experience by using music tracks to ease your body.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -43,7 +43,9 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/placeholder.jpg
+    - assets/
+    - assets/tracks/
+    - assets/tracks/audio/
     - assets/tunes/
     - assets/tunes/audio/
     - assets/tunes/cover_art/

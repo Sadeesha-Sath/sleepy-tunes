@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:sleep_app/app_logic/models/track.dart';
 import 'package:sleep_app/ui/ui_constants.dart';
 
 class TrackCard extends StatelessWidget {
-  final double _volume;
+  final Track _track;
   final onPressed;
 
-  TrackCard(this._volume, {required this.onPressed});
+  TrackCard(this._track, {required this.onPressed});
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -37,7 +38,7 @@ class TrackCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "SoundTrack Name",
+                  _track.trackName,
                   style: TextStyle(color: kPrimaryColor),
                 ),
                 SizedBox(
@@ -50,7 +51,7 @@ class TrackCard extends StatelessWidget {
                       color: kPrimaryColor,
                     ),
                     Slider.adaptive(
-                      value: _volume,
+                      value: _track.volume,
                       onChanged: onPressed,
                     ),
                   ],

@@ -1,0 +1,217 @@
+[
+  {
+    "title": "Brook",
+    "audio_path": "assets/tracks/audio/brooke.mp3",
+    "category": "water"
+  },
+  {
+    "title": "Waterfall",
+    "audio_path": "assets/tracks/audio/waterfall.mp3",
+    "category": "water"
+  },
+  {
+    "title": "River",
+    "audio_path": "assets/tracks/audio/river.mp3",
+    "category": "water"
+  },
+  {
+    "title": "Sea Waves",
+    "audio_path": "assets/tracks/audio/sea_waves.mp3",
+    "category": "water"
+  },
+  {
+    "title": "Blabboring Stream",
+    "audio_path": "assets/tracks/audio/stream_noise.mp3",
+    "category": "water"
+  },
+  {
+    "title": "Alien Machine Gun",
+    "audio_path": "assets/tracks/audio/alien_machine_gun.mp3",
+    "category": "sci-fi"
+  },
+  {
+    "title": "Alien Siren",
+    "audio_path": "assets/tracks/audio/alien_siren.mp3",
+    "category": "sci-fi"
+  },
+  {
+    "title": "Alien Spaceship",
+    "audio_path": "assets/tracks/audio/alien_spaceship.mp3",
+    "category": "sci-fi"
+  },
+  {
+    "title": "Appear",
+    "audio_path": "assets/tracks/audio/appear.mp3",
+    "category": "sci-fi"
+  },
+  {
+    "title": "Laser",
+    "audio_path": "assets/tracks/audio/laser.mp3",
+    "category": "sci-fi"
+  },
+  {
+    "title": "Strange Static",
+    "audio_path": "assets/tracks/audio/strange_static.mp3",
+    "category": "sci-fi"
+  },
+  {
+    "title": "Baby Chick",
+    "audio_path": "assets/tracks/audio/baby_chick.mp3",
+    "category": "nature"
+  },
+  {
+    "title": "Bamboo",
+    "audio_path": "assets/tracks/audio/bamboo.mp3",
+    "category": "nature"
+  },
+  {
+    "title": "Bush Fire",
+    "audio_path": "assets/tracks/audio/bush_fire.mp3",
+    "category": "nature"
+  },
+  {
+    "title": "Cicada",
+    "audio_path": "assets/tracks/audio/cicada.mp3",
+    "category": "nature"
+  },
+  {
+    "title": "Cow",
+    "audio_path": "assets/tracks/audio/cow.mp3",
+    "category": "nature"
+  },
+  {
+    "title": "Earthquake",
+    "audio_path": "assets/tracks/audio/earthquake.mp3",
+    "category": "nature"
+  },
+  {
+    "title": "Flapping Wings",
+    "audio_path": "assets/tracks/audio/flapping_wings.mp3",
+    "category": "nature"
+  },
+  {
+    "title": "Foreset",
+    "audio_path": "assets/tracks/audio/forest.mp3",
+    "category": "nature"
+  },
+  {
+    "title": "Frogs",
+    "audio_path": "assets/tracks/audio/frogs.mp3",
+    "category": "nature"
+  },
+  {
+    "title": "Heartbeat",
+    "audio_path": "assets/tracks/audio/heartbeat.mp3",
+    "category": "nature"
+  },
+  {
+    "title": "Leaves Rustling",
+    "audio_path": "assets/tracks/audio/leaves.mp3",
+    "category": "nature"
+  },
+  {
+    "title": "Natural Ambience",
+    "audio_path": "assets/tracks/audio/natural_ambience.mp3",
+    "category": "nature"
+  },
+  {
+    "title": "Night",
+    "audio_path": "assets/tracks/audio/night_time.mp3",
+    "category": "nature"
+  },
+  {
+    "title": "Thunder",
+    "audio_path": "assets/tracks/audio/thunder.mp3",
+    "category": "nature"
+  },
+  {
+    "title": "Wind",
+    "audio_path": "assets/tracks/audio/wind.mp3",
+    "category": "nature"
+  },
+  {
+    "title": "Ambulance",
+    "audio_path": "assets/tracks/audio/ambulance.mp3",
+    "category": "lifestyle"
+  },
+  {
+    "title": "Campfire",
+    "audio_path": "assets/tracks/audio/campfire.mp3",
+    "category": "lifestyle"
+  },
+  {
+    "title": "Car",
+    "audio_path": "assets/tracks/audio/car.mp3",
+    "category": "lifestyle"
+  },
+  {
+    "title": "Computer Typing",
+    "audio_path": "assets/tracks/audio/computer_typing.mp3",
+    "category": "lifestyle"
+  },
+  {
+    "title": "Harley Davidson",
+    "audio_path": "assets/tracks/audio/harley_davidson.mp3",
+    "category": "lifestyle"
+  },
+  {
+    "title": "Kitchen Sink",
+    "audio_path": "assets/tracks/audio/kitchen_sink.mp3",
+    "category": "lifestyle"
+  },
+  {
+    "title": "City Rain at Night",
+    "audio_path": "assets/tracks/audio/night_rain_city.mp3",
+    "category": "lifestyle"
+  },
+  {
+    "title": "Rowing a Boat",
+    "audio_path": "assets/tracks/audio/rowing_a_boat.mp3",
+    "category": "lifestyle"
+  },
+  {
+    "title": "Brainstorm",
+    "audio_path": "assets/tracks/audio/brainstorm.mp3",
+    "category": "brainwaves"
+  },
+  {
+    "title": "Clear Mind Zen",
+    "audio_path": "assets/tracks/audio/clear_mind.mp3",
+    "category": "brainwaves"
+  },
+  {
+    "title": "Focus",
+    "audio_path": "assets/tracks/audio/focus.mp3",
+    "category": "brainwaves"
+  },
+  {
+    "title": "Deep Sleep",
+    "audio_path": "assets/tracks/audio/deep_sleep.mp3",
+    "category": "brainwaves"
+  },
+  {
+    "title": "Edge Sleep",
+    "audio_path": "assets/tracks/audio/edge_sleep.mp3",
+    "category": "brainwaves"
+  },
+  {
+    "title": "Eupohoria",
+    "audio_path": "assets/tracks/audio/euphoria.mp3",
+    "category": "brainwaves"
+  },
+  {
+    "title": "Power Nap",
+    "audio_path": "assets/tracks/audio/power_nap.mp3",
+    "category": "brainwaves"
+  },
+  {
+    "title": "Meditative Focus",
+    "audio_path": "assets/tracks/audio/mediatative.mp3",
+    "category": "brainwaves"
+  },
+  {
+    "title": "Rise and Shine",
+    "audio_path": "assets/tracks/audio/rise_and_shine.mp3",
+    "category": "brainwaves"
+  }
+]

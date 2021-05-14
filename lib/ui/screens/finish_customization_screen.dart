@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sleep_app/app_logic/providers/customize_timer.dart';
 import 'package:sleep_app/app_logic/providers/default_timer.dart';
 import 'package:sleep_app/ui/screens/player_screen.dart';
 import 'package:sleep_app/ui/ui_constants.dart';
@@ -53,7 +54,7 @@ class FinishCustomizationScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => PlayerScreen(
-                        timing: context.watch<DefaultTimer>().getTiming,
+                        timing: context.watch<CustomizeTimer>().getTiming,
                       ),
                     ),
                   );

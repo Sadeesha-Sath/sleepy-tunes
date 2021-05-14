@@ -45,6 +45,16 @@
     "cover_art": "assets/tunes/cover_art/wave.jpg"
   },
   {
+    "title": "Elevated Brain",
+    "path": "assets/tunes/audio/elevated_brain.mp3",
+    "cover_art": "assets/tunes/cover_art/brain_waves.jpg"
+  },
+  {
+    "title": "Deep Meditation",
+    "path": "assets/tunes/audio/meditation.mp3",
+    "cover_art": "assets/tunes/cover_art/meditation.jpeg"
+  },
+  {
     "title": "Noise - High Pitch",
     "path": "assets/tunes/audio/noise_high.mp3",
     "cover_art": "assets/tunes/cover_art/noise.jpg"

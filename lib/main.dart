@@ -2,6 +2,9 @@ import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sleep_app/app_logic/audio_players/simple_player.dart';
+import 'package:sleep_app/app_logic/providers/customize_timer.dart';
+import 'package:sleep_app/app_logic/providers/selected_tracks.dart';
+import 'package:sleep_app/app_logic/providers/tracks.dart';
 import 'package:sleep_app/app_logic/providers/presets.dart';
 import 'package:sleep_app/theme.dart';
 import 'package:sleep_app/ui/screens/home_screen.dart';
@@ -14,6 +17,10 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider<CustomizeTimer>(
+      create: (_) => CustomizeTimer(),),
+        ChangeNotifierProvider<SelectedTracks>(create: (_) => SelectedTracks()),
+        ChangeNotifierProvider<Tracks>(create: (_) => Tracks()),
         ChangeNotifierProvider<BottomAppBarData>(create: (_) => BottomAppBarData()),
         Provider<SimplePlayer>(create: (_) => SimplePlayer()),
         ChangeNotifierProvider<Tunes>(create: (_) => Tunes()),

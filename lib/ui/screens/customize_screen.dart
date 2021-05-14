@@ -24,7 +24,7 @@ class CustomizeScreen extends StatelessWidget {
                 ],
               ),
               CustomizeTabBar(),
-              CustomizeScreenSliverGrid()
+              CustomizeScreenSliverGrid(),
             ],
           ),
           CustomizeScreenFAB(),

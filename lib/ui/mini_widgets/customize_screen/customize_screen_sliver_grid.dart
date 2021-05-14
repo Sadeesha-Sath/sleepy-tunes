@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:sleep_app/app_logic/models/track.dart';
+import 'package:sleep_app/app_logic/providers/selected_tracks.dart';
+import 'package:sleep_app/app_logic/providers/tracks.dart';
+import 'package:provider/provider.dart';
+import 'package:sleep_app/ui/ui_constants.dart';
 
 class CustomizeScreenSliverGrid extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
+    List<Track> _activeTrackList = context.watch<Tracks>().getActiveTrackList;
+    Set<Track> _selectedTracks = context.watch<SelectedTracks>().getTrackSet;
     return SliverGrid(
       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 200,
@@ -13,17 +19,36 @@ class CustomizeScreenSliverGrid extends StatelessWidget {
         (BuildContext context, int index) {
           return Stack(
             children: [
-              Card(
-                color: Colors.grey.shade900,
-                elevation: 2,
-                clipBehavior: Clip.antiAlias,
-                margin: EdgeInsets.only(left: 15, right: 15, bottom: 60),
-                shape: CircleBorder(),
-                child: Container(),
+              GestureDetector(
+                onTap: () {
+                  context.read<SelectedTracks>().toggleAddTrack(_activeTrackList[index]);
+                },
+                child: Card(
+                  color: Colors.grey.shade900,
+                  elevation: 2,
+                  clipBehavior: Clip.hardEdge,
+                  margin: EdgeInsets.only(left: 15, right: 15, bottom: 60),
+                  shape: CircleBorder(),
+                  child: Container(
+                    child: Opacity(
+                      opacity: _selectedTracks.contains(_activeTrackList[index]) ? 0.5 : 0,
+                      child: Container(
+                        child: Center(
+                          child: Icon(
+                            Icons.check,
+                            color: kBackgroundColor,
+                            size: 100,
+                          ),
+                        ),
+                        color: Colors.green,
+                      ),
+                    ),
+                  ),
+                ),
               ),
               Positioned(
                 child: Text(
-                  "Beach",
+                  _activeTrackList[index].trackName,
                   textAlign: TextAlign.center,
                 ),
                 bottom: 30,
@@ -34,7 +59,7 @@ class CustomizeScreenSliverGrid extends StatelessWidget {
             clipBehavior: Clip.none,
           );
         },
-        childCount: 20,
+        childCount: _activeTrackList.length,
       ),
     );
   }

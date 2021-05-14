@@ -14,6 +14,7 @@ List<Widget> persistentFooterButtons(
       width: double.maxFinite,
       child: ListTile(
         // TODO Find a good BackgroundColor
+        // TODO Make the list tile come up the player screen and pass a specific parameter to prevent the simple player from reloading
         tileColor: Colors.lightBlue.shade900,
         contentPadding: EdgeInsets.only(left: 10),
         leading: Container(
