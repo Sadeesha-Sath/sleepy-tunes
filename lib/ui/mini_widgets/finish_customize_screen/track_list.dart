@@ -18,7 +18,7 @@ class TrackList extends StatelessWidget {
           // This generates track cards on demand
           ...List.generate(
             selectedTracks.length,
-            (index) => TrackCard(selectedTracks.elementAt(index), onPressed: (double value) {
+            (index) => TrackCard(selectedTracks.elementAt(index), onChanged: (double value) {
               // Updates the track set
               context.read<SelectedTracks>().changeVolume(index, value);
               // Updates the player in real time

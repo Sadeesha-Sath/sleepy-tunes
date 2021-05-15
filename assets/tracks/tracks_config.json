@@ -1,7 +1,7 @@
 [
   {
     "title": "Brook",
-    "audio_path": "assets/tracks/audio/brooke.mp3",
+    "audio_path": "assets/tracks/audio/brook.mp3",
     "category": "water"
   },
   {
@@ -90,7 +90,7 @@
     "category": "nature"
   },
   {
-    "title": "Foreset",
+    "title": "Forest",
     "audio_path": "assets/tracks/audio/forest.mp3",
     "category": "nature"
   },

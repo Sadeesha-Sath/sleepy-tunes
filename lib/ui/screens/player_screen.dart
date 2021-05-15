@@ -67,40 +67,31 @@ class PlayerScreen extends StatelessWidget {
         assert(tracks != null);
         assert(tune == null);
         try {
-          if (!_simplePlayer.isTune) {
-            if (tracks != _simplePlayer.currentTracks) {
-              try {
-                _simplePlayer.dispose();
-              } catch (e) {
-                print(e);
-              }
-              _simplePlayer.loadData(isTune: false, tracks: tracks);
-              _simplePlayer.onStart();
-              Future.delayed(
-                Duration.zero,
-                () async {
-                  _bottomAppBarData.changeData("${tracks!.first.trackName} & ${tracks!.length - 1} others");
-                },
-              );
-              Future.delayed(Duration.zero, () async {
-                _bottomAppBarData.changePlayingState(true);
-              });
-            }
-          } else {
-            try {
-              _simplePlayer.dispose();
-            } catch (e) {
-              print(e);
-            }
+          try {
+            _simplePlayer.dispose();
+          } catch (e) {
+            print("THIS IS AN ERROR YOU IDIOT --------  $e");
           }
-        } catch (e) {
-          print(e);
           _simplePlayer.loadData(isTune: false, tracks: tracks);
           _simplePlayer.onStart();
           Future.delayed(
             Duration.zero,
             () async {
-              _bottomAppBarData.changeData("${tracks!.first.trackName} & ${tracks!.length - 1} others");
+              _bottomAppBarData.changeData("${tracks!.first.trackName} & ${tracks!.length - 1} others", null);
+            },
+          );
+          Future.delayed(Duration.zero, () async {
+            _bottomAppBarData.changePlayingState(true);
+          });
+        } catch (e) {
+          print('5');
+          print('This is also an error  $e');
+          _simplePlayer.loadData(isTune: false, tracks: tracks);
+          _simplePlayer.onStart();
+          Future.delayed(
+            Duration.zero,
+            () async {
+              _bottomAppBarData.changeData("${tracks!.first.trackName} & ${tracks!.length - 1} others", null);
             },
           );
           Future.delayed(Duration.zero, () async {
@@ -109,7 +100,8 @@ class PlayerScreen extends StatelessWidget {
         }
       }
     } else {
-      _isPlaying = _simplePlayer.isPlaying;
+      print("6");
+      _isPlaying = context.watch<SimplePlayer>().isPlaying;
       if (_simplePlayer.isTune)
         tune = _simplePlayer.currentTune;
       else
@@ -134,6 +126,7 @@ class PlayerScreen extends StatelessWidget {
                   ? tune!.name
                   : tracks != null
                       ? "${tracks!.first.trackName} & ${tracks!.length - 1} others"
+                      // TODO Add preset naming support
                       : "Preset 1",
               style: TextStyle(fontSize: 16),
             ),

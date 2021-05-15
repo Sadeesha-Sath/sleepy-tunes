@@ -15,16 +15,18 @@ List<Widget> persistentFooterButtons(
       width: double.maxFinite,
       child: ListTile(
         // TODO Find a good BackgroundColor
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => PlayerScreen(
-                isFromBottomBar: true,
-              ),
-            ),
-          );
-        },
+        onTap: context.watch<SimplePlayer>().haveData
+            ? () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PlayerScreen(
+                      isFromBottomBar: true,
+                    ),
+                  ),
+                );
+              }
+            : null,
         tileColor: Colors.lightBlue.shade900,
         contentPadding: EdgeInsets.only(left: 10),
         leading: Container(
@@ -47,10 +49,12 @@ List<Widget> persistentFooterButtons(
                     size: 32,
                     color: kPrimaryColor,
                   ),
-                  onPressed: () {
-                    _bottomAppBarData.isPlaying ? _simplePlayer.onPause() : _simplePlayer.onResume();
-                    context.read<BottomAppBarData>().changePlayingState();
-                  }),
+                  onPressed: context.watch<SimplePlayer>().haveData
+                      ? () {
+                          _bottomAppBarData.isPlaying ? _simplePlayer.onPause() : _simplePlayer.onResume();
+                          context.read<BottomAppBarData>().changePlayingState();
+                        }
+                      : null),
               IconButton(
                   splashRadius: 25,
                   icon: Icon(

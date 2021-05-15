@@ -117,18 +117,13 @@ class SimplePlayer {
     }
   }
 
-// TODO find out the issue in dispose method
-  Future dispose() async {
+ 
+  void dispose() async {
     if (_isTune) {
       await _player.dispose();
     } else {
       for (var player in _playerList) {
-        if (player == _playerList.last)
-          await player.dispose();
-        else
-          player.dispose();
-
-        // await player.dispose();
+        await player.dispose();
       }
       _isTracksPlaying = false;
     }
@@ -144,6 +139,11 @@ class SimplePlayer {
   Tune get currentTune => _tune!;
 
   Set<Track> get currentTracks => _tracks!;
+
+  bool get haveData {
+    if (_tune != null || _tracks != null) return true;
+    return false;
+  }
 
   // void Function(Timer) isTimerExceeded() {
   //   return (Timer tim) {

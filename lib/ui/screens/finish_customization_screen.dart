@@ -13,6 +13,7 @@ import 'package:sleep_app/ui/custom_methods/build_custom_show_bottom_sheet.dart'
 class FinishCustomizationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var length = context.watch<SelectedTracks>().getTrackSet.length;
     return Scaffold(
       backgroundColor: kBackgroundColor,
       body: Padding(
@@ -32,13 +33,15 @@ class FinishCustomizationScreen extends StatelessWidget {
                 iconSize: 31.5,
                 icon: Icon(Icons.save),
                 color: Colors.lightBlueAccent.shade400,
-                onPressed: () {
-                  buildCustomShowModalBottomSheet(
-                    isScrollControlled: true,
-                    context: context,
-                    builder: (context) => SavePresetBottomSheet(),
-                  );
-                },
+                onPressed: length != 0
+                    ? () {
+                        buildCustomShowModalBottomSheet(
+                          isScrollControlled: true,
+                          context: context,
+                          builder: (context) => SavePresetBottomSheet(),
+                        );
+                      }
+                    : null,
               ),
             ),
             Positioned(
@@ -49,17 +52,19 @@ class FinishCustomizationScreen extends StatelessWidget {
                 backgroundColor: Colors.lightBlueAccent.shade700.withOpacity(0.95),
                 icon: Icon(Icons.arrow_forward_ios_rounded),
                 iconSize: 27.5,
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PlayerScreen(
-                        timing: context.watch<CustomizeTimer>().getTiming,
-                        tracks: context.watch<SelectedTracks>().getTrackSet,
-                      ),
-                    ),
-                  );
-                },
+                onPressed: length != 0
+                    ? () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PlayerScreen(
+                              timing: context.watch<CustomizeTimer>().getTiming,
+                              tracks: context.watch<SelectedTracks>().getTrackSet,
+                            ),
+                          ),
+                        );
+                      }
+                    : null,
               ),
             ),
           ],

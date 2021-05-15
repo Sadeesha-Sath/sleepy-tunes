@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sleep_app/app_logic/audio_players/simple_player.dart';
+import 'package:sleep_app/app_logic/providers/bottom_appbar_data.dart';
 import 'package:sleep_app/ui/ui_constants.dart';
 import 'package:sleep_app/ui/custom_methods/build_custom_show_bottom_sheet.dart';
 import 'package:sleep_app/ui/utils/settings_bottom_sheet.dart';
@@ -17,7 +18,7 @@ class PlayerControlsRow extends StatefulWidget {
 
   final SimplePlayer _simplePlayer;
   final bool _isPlaying;
-  final bottomAppBarData;
+  final BottomAppBarData bottomAppBarData;
 
   @override
   _PlayerControlsRowState createState() => _PlayerControlsRowState();
@@ -28,6 +29,8 @@ class _PlayerControlsRowState extends State<PlayerControlsRow> {
   @override
   void initState() {
     _isPlaying = widget._isPlaying;
+    if (widget.bottomAppBarData.isPlaying == true && _isPlaying != widget.bottomAppBarData.isPlaying)
+      _isPlaying = !_isPlaying;
     super.initState();
   }
 

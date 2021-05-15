@@ -6,10 +6,12 @@ class SelectedTracks extends ChangeNotifier {
 
   void addTrack(Track track) {
     _trackSet.add(track);
+    notifyListeners();
   }
 
   void removeTrack(Track track) {
     _trackSet.remove(track);
+    notifyListeners();
   }
 
   void setTracks(Set<Track> tracks) {
@@ -27,7 +29,6 @@ class SelectedTracks extends ChangeNotifier {
       removeTrack(track);
     else
       addTrack(track);
-    notifyListeners();
   }
 
   void changeVolume(int index, double value) {
