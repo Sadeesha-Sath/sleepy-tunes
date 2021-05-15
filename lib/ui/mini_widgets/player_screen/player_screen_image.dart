@@ -13,19 +13,13 @@ class PlayerScreenImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.green,
         shape: BoxShape.circle,
-        image: tune != null
-            ? DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage(
-                  tune!.imagePath,
-                ),
-              )
-            : DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage('assets/placeholder.jpg'),
-              ),
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          image: AssetImage(
+            tune != null ? tune!.imagePath : 'assets/placeholder.jpg',
+          ),
+        ),
       ),
       margin: EdgeInsets.only(bottom: 12),
       width: 225,

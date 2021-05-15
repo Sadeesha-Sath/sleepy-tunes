@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sleep_app/app_logic/providers/customize_timer.dart';
-import 'package:sleep_app/app_logic/providers/default_timer.dart';
+import 'package:sleep_app/app_logic/providers/selected_tracks.dart';
 import 'package:sleep_app/ui/screens/player_screen.dart';
 import 'package:sleep_app/ui/ui_constants.dart';
 import 'package:sleep_app/ui/utils/custom_sliver_appbar.dart';
@@ -55,6 +55,7 @@ class FinishCustomizationScreen extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (context) => PlayerScreen(
                         timing: context.watch<CustomizeTimer>().getTiming,
+                        tracks: context.watch<SelectedTracks>().getTrackSet,
                       ),
                     ),
                   );

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sleep_app/app_logic/models/preset.dart';
+import 'package:sleep_app/app_logic/providers/customize_timer.dart';
 import 'package:sleep_app/app_logic/providers/presets.dart';
+import 'package:sleep_app/app_logic/providers/selected_tracks.dart';
 import 'package:sleep_app/ui/screens/finish_customization_screen.dart';
 import 'package:sleep_app/ui/screens/player_screen.dart';
 import 'package:sleep_app/ui/ui_constants.dart';
@@ -34,6 +36,8 @@ class PresetScreen extends StatelessWidget {
                             ),
                             child: InkWell(
                               onLongPress: () {
+                                context.read<SelectedTracks>().setTracks(e.trackList.toSet());
+                                context.read<CustomizeTimer>().changeTiming(e.timing.cast<int>());
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -45,7 +49,7 @@ class PresetScreen extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => PlayerScreen(timing: e.timing, tracks: e.trackList),
+                                    builder: (context) => PlayerScreen(timing: e.timing, tracks: e.trackList.toSet()),
                                   ),
                                 );
                               },

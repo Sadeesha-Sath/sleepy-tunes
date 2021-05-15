@@ -5,7 +5,7 @@ class BottomAppBarData with ChangeNotifier {
   String? _imagePath;
   bool _isPlaying = false;
 
-  void changeData(String? title, String? imagePath) {
+  void changeData([String? title, String? imagePath]) {
     if (title != null) _title = title;
     if (imagePath != null) _imagePath = imagePath;
   }

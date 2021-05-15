@@ -8,14 +8,15 @@ class SimplePlayer {
   // List<int> timing;
   late bool _isTune;
   Tune? _tune;
-  List<Track>? _tracks;
+  Set<Track>? _tracks;
   late AudioPlayer _player;
   List<AudioPlayer> _playerList = [];
+  bool _isTracksPlaying = false;
   // var _stopWatch = Stopwatch();
 
   // SimplePlayer({required this.timing});
 
-  void loadData({required bool isTune, Tune? tune, List<Track>? tracks}) async {
+  void loadData({required bool isTune, Tune? tune, Set<Track>? tracks}) async {
     this._isTune = isTune;
     this._tune = tune;
     this._tracks = tracks;
@@ -30,12 +31,37 @@ class SimplePlayer {
       await _player.setAsset(_tune!.audioPath);
       await _player.play();
       // _stopWatch.start();
+    } else {
+      assert(_tracks != null && _tracks!.isNotEmpty);
+      for (Track track in _tracks!) {
+        var player = AudioPlayer();
+        await player.setLoopMode(LoopMode.one);
+        player.setVolume(track.volume);
+        await player.setAsset(track.trackPath);
+        _playerList.add(player);
+      }
+      for (var player in _playerList) {
+        if (player == _playerList.last)
+          await player.play();
+        else
+          player.play();
+      }
+      _isTracksPlaying = true;
     }
   }
 
   Future onPause() async {
     if (_isTune) {
       await _player.pause();
+    } else {
+      for (var player in _playerList) {
+        if (player == _playerList.last)
+          await player.pause();
+        else
+          player.pause();
+        // await player.pause();
+      }
+      _isTracksPlaying = false;
     }
     // _stopWatch.stop();
   }
@@ -44,31 +70,80 @@ class SimplePlayer {
     if (_isTune) {
       await _player.play();
       // _stopWatch.start();
+    } else {
+      for (var player in _playerList) {
+        if (player == _playerList.last)
+          await player.play();
+        else
+          player.play();
+      }
+      _isTracksPlaying = true;
     }
   }
 
   Future setVolume(volume) async {
-    if (_isTune) await _player.setVolume(volume);
-  }
-
-  Future setSpeed(speed) async {
-    if (_isTune) await _player.setSpeed(speed);
-  }
-
-  Future dispose() async {
-    if (_isTune) {
-      // _stopWatch.stop();
-      // _stopWatch.reset();
-      // await _player.stop();
-      await _player.dispose();
+    if (_isTune)
+      await _player.setVolume(volume);
+    else {
+      for (var player in _playerList) {
+        if (player == _playerList.last)
+          await player.setVolume(volume * _tracks!.elementAt(_playerList.indexOf(player)).volume);
+        else
+          player.setVolume(volume * _tracks!.elementAt(_playerList.indexOf(player)).volume);
+        // await player.setVolume(volume * player.volume);
+      }
     }
   }
 
-  bool get isPlaying => _player.playing;
+  Future setVolumeonOne(int index, double value, double universalVolume) async {
+    try {
+      if (_playerList.isNotEmpty) _playerList[index].setVolume(value * universalVolume);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future setSpeed(speed) async {
+    if (_isTune)
+      await _player.setSpeed(speed);
+    else {
+      for (var player in _playerList) {
+        if (player == _playerList.last)
+          await player.setSpeed(speed);
+        else
+          player.setSpeed(speed);
+        await player.setSpeed(speed);
+      }
+    }
+  }
+
+// TODO find out the issue in dispose method
+  Future dispose() async {
+    if (_isTune) {
+      await _player.dispose();
+    } else {
+      for (var player in _playerList) {
+        if (player == _playerList.last)
+          await player.dispose();
+        else
+          player.dispose();
+
+        // await player.dispose();
+      }
+      _isTracksPlaying = false;
+    }
+  }
+
+  bool get isPlaying {
+    if (_isTune) return _player.playing;
+    return _isTracksPlaying;
+  }
 
   bool get isTune => _isTune;
 
   Tune get currentTune => _tune!;
+
+  Set<Track> get currentTracks => _tracks!;
 
   // void Function(Timer) isTimerExceeded() {
   //   return (Timer tim) {

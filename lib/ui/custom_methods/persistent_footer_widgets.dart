@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sleep_app/app_logic/providers/bottom_appbar_data.dart';
 import 'package:sleep_app/app_logic/audio_players/simple_player.dart';
+import 'package:sleep_app/ui/screens/player_screen.dart';
 import 'package:sleep_app/ui/ui_constants.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +15,16 @@ List<Widget> persistentFooterButtons(
       width: double.maxFinite,
       child: ListTile(
         // TODO Find a good BackgroundColor
-        // TODO Make the list tile come up the player screen and pass a specific parameter to prevent the simple player from reloading
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PlayerScreen(
+                isFromBottomBar: true,
+              ),
+            ),
+          );
+        },
         tileColor: Colors.lightBlue.shade900,
         contentPadding: EdgeInsets.only(left: 10),
         leading: Container(

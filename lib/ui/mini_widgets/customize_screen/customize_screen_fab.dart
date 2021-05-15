@@ -24,18 +24,20 @@ class CustomizeScreenFAB extends StatelessWidget {
               size: 28,
             )),
             shape: CircleBorder(),
-            onPressed: () {
+            // This Button Disables when the selected set is zero
+            onPressed: length != 0 ? () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => FinishCustomizationScreen(),
                 ),
               );
-            },
+            } : null,
             foregroundColor: kBackgroundColor,
             backgroundColor: Colors.lightBlueAccent.shade700,
             // backgroundColor: Color(0xFF141414),
           ),
+          // This is the floating red indicator of the FAB
           length != 0
               ? Positioned(
                   top: -12,

@@ -12,6 +12,11 @@ class SelectedTracks extends ChangeNotifier {
     _trackSet.remove(track);
   }
 
+  void setTracks(Set<Track> tracks) {
+    _trackSet = tracks;
+    notifyListeners();
+  }
+
   void clearTracks() {
     _trackSet = {};
     notifyListeners();

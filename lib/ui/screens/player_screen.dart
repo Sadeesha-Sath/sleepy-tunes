@@ -9,56 +9,111 @@ import 'package:provider/provider.dart';
 import 'package:sleep_app/ui/mini_widgets/player_screen/player_screen_image.dart';
 
 class PlayerScreen extends StatelessWidget {
-  final Tune? tune;
-  final List<Track?>? tracks;
-  final List<dynamic> timing;
+  Tune? tune;
+  Set<Track>? tracks;
+  final List<dynamic>? timing;
+  final bool isFromBottomBar;
   late final BottomAppBarData _bottomAppBarData;
   late final SimplePlayer _simplePlayer;
 
-  PlayerScreen({this.tune, this.tracks, required this.timing});
-
+  PlayerScreen({this.tune, this.tracks, this.timing, this.isFromBottomBar = false});
   @override
   Widget build(BuildContext context) {
     bool _isPlaying = true;
     _bottomAppBarData = context.read<BottomAppBarData>();
     _simplePlayer = context.read<SimplePlayer>();
-    if (tune != null) {
-      assert(tracks == null);
-      try {
-        // TODO Find a better way to do this
-        if (_simplePlayer.isTune) {
-          if (tune != _simplePlayer.currentTune) {
+    if (!isFromBottomBar) {
+      if (tune != null) {
+        assert(tracks == null);
+        try {
+          // TODO Find a better way to do this
+          if (_simplePlayer.isTune) {
+            if (tune != _simplePlayer.currentTune) {
+              try {
+                _simplePlayer.dispose();
+              } catch (e) {
+                print(e);
+              }
+              _simplePlayer.loadData(isTune: true, tune: tune);
+              _simplePlayer.onStart();
+              Future.delayed(Duration.zero, () async {
+                _bottomAppBarData.changeData(tune!.name, tune!.imagePath);
+              });
+              Future.delayed(Duration.zero, () async {
+                _bottomAppBarData.changePlayingState(true);
+              });
+            } else {
+              _isPlaying = _simplePlayer.isPlaying;
+            }
+          } else {
             try {
               _simplePlayer.dispose();
             } catch (e) {
               print(e);
             }
-            _simplePlayer.loadData(isTune: true, tune: tune);
-            _simplePlayer.onStart();
-            Future.delayed(Duration.zero, () async {
-              _bottomAppBarData.changeData(tune!.name, tune!.imagePath);
-            });
-            Future.delayed(Duration.zero, () async {
-              _bottomAppBarData.changePlayingState(true);
-            });
-          } else {
-            _isPlaying = _simplePlayer.isPlaying;
           }
+        } catch (e) {
+          print(e);
+          _simplePlayer.loadData(isTune: true, tune: tune);
+          _simplePlayer.onStart();
+          Future.delayed(Duration.zero, () async {
+            _bottomAppBarData.changeData(tune!.name, tune!.imagePath);
+          });
+          Future.delayed(Duration.zero, () async {
+            _bottomAppBarData.changePlayingState(true);
+          });
         }
-      } catch (e) {
-        print(e);
-        _simplePlayer.loadData(isTune: true, tune: tune);
-        _simplePlayer.onStart();
-        Future.delayed(Duration.zero, () async {
-          _bottomAppBarData.changeData(tune!.name, tune!.imagePath);
-        });
-        Future.delayed(Duration.zero, () async {
-          _bottomAppBarData.changePlayingState(true);
-        });
+      } else {
+        assert(tracks != null);
+        assert(tune == null);
+        try {
+          if (!_simplePlayer.isTune) {
+            if (tracks != _simplePlayer.currentTracks) {
+              try {
+                _simplePlayer.dispose();
+              } catch (e) {
+                print(e);
+              }
+              _simplePlayer.loadData(isTune: false, tracks: tracks);
+              _simplePlayer.onStart();
+              Future.delayed(
+                Duration.zero,
+                () async {
+                  _bottomAppBarData.changeData("${tracks!.first.trackName} & ${tracks!.length - 1} others");
+                },
+              );
+              Future.delayed(Duration.zero, () async {
+                _bottomAppBarData.changePlayingState(true);
+              });
+            }
+          } else {
+            try {
+              _simplePlayer.dispose();
+            } catch (e) {
+              print(e);
+            }
+          }
+        } catch (e) {
+          print(e);
+          _simplePlayer.loadData(isTune: false, tracks: tracks);
+          _simplePlayer.onStart();
+          Future.delayed(
+            Duration.zero,
+            () async {
+              _bottomAppBarData.changeData("${tracks!.first.trackName} & ${tracks!.length - 1} others");
+            },
+          );
+          Future.delayed(Duration.zero, () async {
+            _bottomAppBarData.changePlayingState(true);
+          });
+        }
       }
     } else {
-      assert(tracks != null);
-      assert(tune == null);
+      _isPlaying = _simplePlayer.isPlaying;
+      if (_simplePlayer.isTune)
+        tune = _simplePlayer.currentTune;
+      else
+        tracks = _simplePlayer.currentTracks;
     }
 
     return Scaffold(
@@ -73,9 +128,13 @@ class PlayerScreen extends StatelessWidget {
         alignment: Alignment.center,
         child: Column(
           children: [
-            PlayerScreenImage(tune: tune!),
+            PlayerScreenImage(tune: tune),
             Text(
-              tune != null ? tune!.name : "Custom Track",
+              tune != null
+                  ? tune!.name
+                  : tracks != null
+                      ? "${tracks!.first.trackName} & ${tracks!.length - 1} others"
+                      : "Preset 1",
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(

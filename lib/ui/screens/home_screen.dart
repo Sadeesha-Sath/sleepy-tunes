@@ -26,8 +26,9 @@ class _HomeScreenState extends State<HomeScreen> {
     context.read<Tracks>().loadTracks();
     context.read<Presets>().loadPresets();
     context.read<DefaultTimer>().getSavedData();
-    Future.delayed(
-        Duration(seconds: 3), () {context.read<CustomizeTimer>().changeTiming(context.read<DefaultTimer>().getTiming);});
+    Future.delayed(Duration(seconds: 4), () {
+      context.read<CustomizeTimer>().changeTiming(context.read<DefaultTimer>().getTiming);
+    });
     super.initState();
   }
 

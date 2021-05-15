@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sleep_app/app_logic/models/preset.dart';
-import 'package:sleep_app/app_logic/models/track.dart';
+import 'package:sleep_app/app_logic/providers/customize_timer.dart';
 import 'package:sleep_app/app_logic/providers/presets.dart';
+import 'package:sleep_app/app_logic/providers/selected_tracks.dart';
 import 'package:sleep_app/ui/ui_constants.dart';
 
 class SavePresetBottomSheet extends StatelessWidget {
@@ -16,6 +17,7 @@ class SavePresetBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var selectedTracks = context.read<SelectedTracks>().getTrackSet;
     String initialText = getInitialText(context.watch<Presets>().getPresets);
     var textController = TextEditingController(text: initialText);
     return Container(
@@ -40,8 +42,8 @@ class SavePresetBottomSheet extends StatelessWidget {
                 context.read<Presets>().addPreset(
                       Preset(
                         name: textController.value.text,
-                        timing: [1, 54],
-                        trackList: [Track(trackImagePath: '1', trackName: '1', trackPath: '1', volume: 0.6)],
+                        timing: context.read<CustomizeTimer>().getTiming,
+                        trackList: selectedTracks.toList(),
                       ),
                     );
                 Navigator.pop(context);
@@ -80,8 +82,8 @@ class SavePresetBottomSheet extends StatelessWidget {
                           context.read<Presets>().addPreset(
                                 Preset(
                                   name: textController.value.text,
-                                  timing: [1, 54],
-                                  trackList: [Track(trackImagePath: '1', trackName: '1', trackPath: '1', volume: 0.6)],
+                                  timing: context.read<CustomizeTimer>().getTiming,
+                                  trackList: selectedTracks.toList(),
                                 ),
                               );
                           Navigator.pop(context);
