@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sleep_app/ui/ui_constants.dart';
+import 'package:sleepy_tunes/ui/ui_constants.dart';
 
 class CustomSliverAppBar extends StatelessWidget {
   final String title;

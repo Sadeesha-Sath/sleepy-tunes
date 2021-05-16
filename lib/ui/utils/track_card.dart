@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sleep_app/app_logic/models/track.dart';
-import 'package:sleep_app/app_logic/providers/selected_tracks.dart';
-import 'package:sleep_app/ui/ui_constants.dart';
+import 'package:sleepy_tunes/app_logic/models/track.dart';
+import 'package:sleepy_tunes/app_logic/providers/selected_tracks.dart';
+import 'package:sleepy_tunes/ui/ui_constants.dart';
 import 'package:provider/provider.dart';
 
 class TrackCard extends StatelessWidget {

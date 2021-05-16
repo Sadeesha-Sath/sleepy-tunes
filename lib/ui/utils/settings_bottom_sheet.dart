@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sleep_app/app_logic/audio_players/simple_player.dart';
-import 'package:sleep_app/ui/ui_constants.dart';
+import 'package:sleepy_tunes/app_logic/audio_players/simple_player.dart';
+import 'package:sleepy_tunes/ui/ui_constants.dart';
 
 class SettingsBottomSheet extends StatefulWidget {
   final SimplePlayer player;

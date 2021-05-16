@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sleep_app/app_logic/models/preset.dart';
-import 'package:sleep_app/app_logic/providers/customize_timer.dart';
-import 'package:sleep_app/app_logic/providers/presets.dart';
-import 'package:sleep_app/app_logic/providers/selected_tracks.dart';
-import 'package:sleep_app/ui/ui_constants.dart';
+import 'package:sleepy_tunes/app_logic/models/preset.dart';
+import 'package:sleepy_tunes/app_logic/providers/customize_timer.dart';
+import 'package:sleepy_tunes/app_logic/providers/presets.dart';
+import 'package:sleepy_tunes/app_logic/providers/selected_tracks.dart';
+import 'package:sleepy_tunes/ui/ui_constants.dart';
 
 class SavePresetBottomSheet extends StatelessWidget {
   String getInitialText(Set<Preset> presetSet) {

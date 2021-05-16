@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sleep_app/app_logic/logic_handelers/file_handler.dart';
+import 'package:sleepy_tunes/app_logic/logic_handelers/file_handler.dart';
 
-class DefaultTimer with ChangeNotifier{
+class DefaultTimer with ChangeNotifier {
   late List<int> _timing;
 
   void getSavedData() async {

@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:sleep_app/app_logic/models/track.dart';
+import 'package:sleepy_tunes/app_logic/models/track.dart';
 
 class SelectedTracks extends ChangeNotifier {
   Set<Track> _trackSet = {};
+  String? _presetName;
 
   void addTrack(Track track) {
     _trackSet.add(track);
+    notifyListeners();
+  }
+
+  void changePresetName(String name) {
+    _presetName = name;
     notifyListeners();
   }
 
@@ -37,4 +43,5 @@ class SelectedTracks extends ChangeNotifier {
   }
 
   Set<Track> get getTrackSet => _trackSet;
+  String? get getPresetName => _presetName;
 }

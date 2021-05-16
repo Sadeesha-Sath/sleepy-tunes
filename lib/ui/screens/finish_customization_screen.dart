@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:sleep_app/app_logic/providers/customize_timer.dart';
-import 'package:sleep_app/app_logic/providers/selected_tracks.dart';
-import 'package:sleep_app/ui/screens/player_screen.dart';
-import 'package:sleep_app/ui/ui_constants.dart';
-import 'package:sleep_app/ui/utils/custom_sliver_appbar.dart';
-import 'package:sleep_app/ui/utils/save_preset_bottom_sheet.dart';
+import 'package:sleepy_tunes/app_logic/providers/customize_timer.dart';
+import 'package:sleepy_tunes/app_logic/providers/selected_tracks.dart';
+import 'package:sleepy_tunes/ui/screens/player_screen.dart';
+import 'package:sleepy_tunes/ui/ui_constants.dart';
+import 'package:sleepy_tunes/ui/utils/custom_sliver_appbar.dart';
+import 'package:sleepy_tunes/ui/utils/save_preset_bottom_sheet.dart';
 import 'package:provider/provider.dart';
-import 'package:sleep_app/ui/mini_widgets/finish_customize_screen/track_list.dart';
-import 'package:sleep_app/ui/utils/custom_icon_button.dart';
-import 'package:sleep_app/ui/custom_methods/build_custom_show_bottom_sheet.dart';
+import 'package:sleepy_tunes/ui/mini_widgets/finish_customize_screen/track_list.dart';
+import 'package:sleepy_tunes/ui/utils/custom_icon_button.dart';
+import 'package:sleepy_tunes/ui/custom_methods/build_custom_show_bottom_sheet.dart';
 
 class FinishCustomizationScreen extends StatelessWidget {
   @override
@@ -56,11 +56,23 @@ class FinishCustomizationScreen extends StatelessWidget {
                     ? () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => PlayerScreen(
+                          PageRouteBuilder(
+                            pageBuilder: (context, animation1, animation2) => PlayerScreen(
                               timing: context.watch<CustomizeTimer>().getTiming,
                               tracks: context.watch<SelectedTracks>().getTrackSet,
                             ),
+                            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                              var begin = Offset(0.0, 1.0);
+                              var end = Offset.zero;
+                              var curve = Curves.easeInOut;
+
+                              var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+                              return SlideTransition(
+                                position: animation.drive(tween),
+                                child: child,
+                              );
+                            },
                           ),
                         );
                       }

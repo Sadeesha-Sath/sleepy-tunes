@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:sleep_app/app_logic/providers/customize_timer.dart';
-import 'package:sleep_app/app_logic/providers/default_timer.dart';
-import 'package:sleep_app/app_logic/providers/tracks.dart';
-import 'package:sleep_app/app_logic/providers/tunes.dart';
-import 'package:sleep_app/ui/custom_methods/persistent_footer_widgets.dart';
-import 'package:sleep_app/ui/screens/tunes_screen.dart';
-import 'package:sleep_app/ui/screens/settings_screen.dart';
-import 'package:sleep_app/ui/screens/customize_screen.dart';
+import 'package:sleepy_tunes/app_logic/providers/customize_timer.dart';
+import 'package:sleepy_tunes/app_logic/providers/default_timer.dart';
+import 'package:sleepy_tunes/app_logic/providers/tracks.dart';
+import 'package:sleepy_tunes/app_logic/providers/tunes.dart';
+import 'package:sleepy_tunes/ui/custom_methods/persistent_footer_widgets.dart';
+import 'package:sleepy_tunes/ui/screens/tunes_screen.dart';
+import 'package:sleepy_tunes/ui/screens/settings_screen.dart';
+import 'package:sleepy_tunes/ui/screens/customize_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:sleep_app/ui/ui_constants.dart';
-import 'package:sleep_app/app_logic/providers/presets.dart';
+import 'package:sleepy_tunes/ui/ui_constants.dart';
+import 'package:sleepy_tunes/app_logic/providers/presets.dart';
 
 class HomeScreen extends StatefulWidget {
   final List<Widget> _screens = [TunesScreen(), CustomizeScreen(), SettingsScreen()];
@@ -19,6 +19,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
+  late PageController _pageController;
 
   @override
   void initState() {
@@ -29,7 +30,14 @@ class _HomeScreenState extends State<HomeScreen> {
     Future.delayed(Duration(seconds: 4), () {
       context.read<CustomizeTimer>().changeTiming(context.read<DefaultTimer>().getTiming);
     });
+    _pageController = PageController();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 
   @override
@@ -42,6 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap: (index) {
           setState(() {
             _currentIndex = index;
+            _pageController.animateToPage(index, duration: Duration(milliseconds: 400), curve: Curves.easeInOut);
           });
         },
         items: [
@@ -53,7 +62,19 @@ class _HomeScreenState extends State<HomeScreen> {
               backgroundColor: kBottomNavBarBackgroundColor3, icon: Icon(Icons.settings_rounded), label: 'Settings')
         ],
       ),
-      body: widget._screens[_currentIndex],
+      body: Container(
+        decoration:
+            BoxDecoration(image: DecorationImage(image: AssetImage("assets/background.png"), fit: BoxFit.cover)),
+        child: SizedBox.expand(
+          child: PageView(
+            controller: _pageController,
+            onPageChanged: (index) {
+              setState(() => _currentIndex = index);
+            },
+            children: widget._screens,
+          ),
+        ),
+      ),
     );
   }
 }

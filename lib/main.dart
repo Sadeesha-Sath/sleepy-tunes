@@ -1,24 +1,24 @@
-import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sleep_app/app_logic/audio_players/simple_player.dart';
-import 'package:sleep_app/app_logic/providers/customize_timer.dart';
-import 'package:sleep_app/app_logic/providers/selected_tracks.dart';
-import 'package:sleep_app/app_logic/providers/tracks.dart';
-import 'package:sleep_app/app_logic/providers/presets.dart';
-import 'package:sleep_app/theme.dart';
-import 'package:sleep_app/ui/screens/home_screen.dart';
-import 'package:sleep_app/app_logic/providers/default_timer.dart';
-import 'package:sleep_app/app_logic/providers/tunes.dart';
-import 'package:sleep_app/app_logic/providers/volume.dart';
-import 'package:sleep_app/app_logic/providers/bottom_appbar_data.dart';
+import 'package:sleepy_tunes/app_logic/audio_players/simple_player.dart';
+import 'package:sleepy_tunes/app_logic/providers/customize_timer.dart';
+import 'package:sleepy_tunes/app_logic/providers/selected_tracks.dart';
+import 'package:sleepy_tunes/app_logic/providers/tracks.dart';
+import 'package:sleepy_tunes/app_logic/providers/presets.dart';
+import 'package:sleepy_tunes/theme.dart';
+import 'package:sleepy_tunes/ui/screens/home_screen.dart';
+import 'package:sleepy_tunes/app_logic/providers/default_timer.dart';
+import 'package:sleepy_tunes/app_logic/providers/tunes.dart';
+import 'package:sleepy_tunes/app_logic/providers/volume.dart';
+import 'package:sleepy_tunes/app_logic/providers/bottom_appbar_data.dart';
 
 void main() {
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider<CustomizeTimer>(
-      create: (_) => CustomizeTimer(),),
+          create: (_) => CustomizeTimer(),
+        ),
         ChangeNotifierProvider<SelectedTracks>(create: (_) => SelectedTracks()),
         ChangeNotifierProvider<Tracks>(create: (_) => Tracks()),
         ChangeNotifierProvider<BottomAppBarData>(create: (_) => BottomAppBarData()),
@@ -39,10 +39,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Sleepy Tunes",
       theme: darkTheme,
-      home: AudioServiceWidget(child: HomeScreen()),
+      home: HomeScreen(),
     );
   }
 }
-
-// TODO Add animations
-// TODO  Implement audio service and audio picker

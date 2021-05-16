@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sleep_app/app_logic/providers/presets.dart';
-import 'package:sleep_app/ui/screens/presets_screen.dart';
+import 'package:sleepy_tunes/app_logic/providers/presets.dart';
+import 'package:sleepy_tunes/ui/screens/presets_screen.dart';
 
 class CustomizeScreenAction extends StatelessWidget {
   @override
@@ -19,8 +19,20 @@ class CustomizeScreenAction extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => PresetScreen(),
+                PageRouteBuilder(
+                  pageBuilder: (context, animation1, animation2) => PresetScreen(),
+                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                    var begin = Offset(0.0, 1.0);
+                    var end = Offset.zero;
+                    var curve = Curves.easeInOut;
+
+                    var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+                    return SlideTransition(
+                      position: animation.drive(tween),
+                      child: child,
+                    );
+                  },
                 ),
               );
             },

@@ -1,14 +1,15 @@
+import 'package:clock/clock.dart';
 import 'package:flutter/material.dart';
-import 'package:sleep_app/ui/utils/custom_sliver_appbar.dart';
-import 'package:sleep_app/ui/ui_constants.dart';
-import 'package:sleep_app/ui/mini_widgets/settings_screen/settings_sliver_list.dart';
+import 'package:sleepy_tunes/ui/utils/custom_sliver_appbar.dart';
+import 'package:sleepy_tunes/ui/ui_constants.dart';
+import 'package:sleepy_tunes/ui/mini_widgets/settings_screen/settings_sliver_list.dart';
 
 class SettingsScreen extends StatelessWidget {
+  final year = Clock().now().year;
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 20, right: 20, top: 10),
-      color: kBackgroundColor,
       child: Stack(
         children: [
           CustomScrollView(
@@ -25,7 +26,7 @@ class SettingsScreen extends StatelessWidget {
             right: 150,
             bottom: 10,
             child: Text(
-              "Copyright",
+              "© Sleepy Tunes $year",
               textAlign: TextAlign.center,
               style: TextStyle(color: kSecondaryColor),
             ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sleep_app/app_logic/models/tune.dart';
+import 'package:sleepy_tunes/app_logic/models/tune.dart';
 
 class PlayerScreenImage extends StatelessWidget {
   const PlayerScreenImage({

@@ -1,7 +1,10 @@
 import 'package:just_audio/just_audio.dart';
-import 'package:sleep_app/app_logic/models/track.dart';
-import 'package:sleep_app/app_logic/models/tune.dart';
+import 'package:sleepy_tunes/app_logic/logic_handelers/timer.dart';
+import 'package:sleepy_tunes/app_logic/models/track.dart';
+import 'package:sleepy_tunes/app_logic/models/tune.dart';
 import 'dart:async';
+
+import 'package:sleepy_tunes/app_logic/providers/bottom_appbar_data.dart';
 
 class SimplePlayer {
   // Duration? timer;
@@ -12,25 +15,29 @@ class SimplePlayer {
   late AudioPlayer _player;
   List<AudioPlayer> _playerList = [];
   bool _isTracksPlaying = false;
-  // var _stopWatch = Stopwatch();
+  late PlayerTimer _playerTimer;
 
-  // SimplePlayer({required this.timing});
-
-  void loadData({required bool isTune, Tune? tune, Set<Track>? tracks}) async {
+  void loadData(
+      {required bool isTune,
+      Tune? tune,
+      Set<Track>? tracks,
+      required List<int> timing,
+      required BottomAppBarData bottomAppBarData}) async {
     this._isTune = isTune;
     this._tune = tune;
     this._tracks = tracks;
+    _playerTimer = PlayerTimer(timing, this, bottomAppBarData);
   }
 
   Future onStart() async {
     // timer = Duration(hours: timing[0], minutes: timing[1]);
+    _playerTimer.startTimer();
     if (_isTune) {
       assert(_tune != null);
       _player = AudioPlayer();
       _player.setLoopMode(LoopMode.one);
       await _player.setAsset(_tune!.audioPath);
       await _player.play();
-      // _stopWatch.start();
     } else {
       assert(_tracks != null && _tracks!.isNotEmpty);
       for (Track track in _tracks!) {
@@ -51,6 +58,7 @@ class SimplePlayer {
   }
 
   Future onPause() async {
+    _playerTimer.pauseTimer();
     if (_isTune) {
       await _player.pause();
     } else {
@@ -59,14 +67,15 @@ class SimplePlayer {
           await player.pause();
         else
           player.pause();
-        // await player.pause();
       }
       _isTracksPlaying = false;
     }
+
     // _stopWatch.stop();
   }
 
   Future onResume() async {
+    _playerTimer.startTimer();
     if (_isTune) {
       await _player.play();
       // _stopWatch.start();
@@ -117,14 +126,16 @@ class SimplePlayer {
     }
   }
 
- 
   void dispose() async {
+    _playerTimer.resetTimer();
     if (_isTune) {
       await _player.dispose();
+      _tune = null;
     } else {
       for (var player in _playerList) {
         await player.dispose();
       }
+      _tracks = null;
       _isTracksPlaying = false;
     }
   }
@@ -144,13 +155,4 @@ class SimplePlayer {
     if (_tune != null || _tracks != null) return true;
     return false;
   }
-
-  // void Function(Timer) isTimerExceeded() {
-  //   return (Timer tim) {
-  //     if (_stopWatch.elapsed >= timer!) {
-  //       dispose();
-  //     }
-  //   };
-  // }
 }
-// TODO Find a way to implement the timer

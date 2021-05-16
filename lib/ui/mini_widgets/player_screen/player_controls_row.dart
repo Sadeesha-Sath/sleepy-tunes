@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:sleep_app/app_logic/audio_players/simple_player.dart';
-import 'package:sleep_app/app_logic/providers/bottom_appbar_data.dart';
-import 'package:sleep_app/ui/ui_constants.dart';
-import 'package:sleep_app/ui/custom_methods/build_custom_show_bottom_sheet.dart';
-import 'package:sleep_app/ui/utils/settings_bottom_sheet.dart';
-import 'package:sleep_app/ui/utils/volume_bottom_sheet.dart';
+import 'package:sleepy_tunes/app_logic/audio_players/simple_player.dart';
+import 'package:sleepy_tunes/app_logic/providers/bottom_appbar_data.dart';
+import 'package:sleepy_tunes/ui/ui_constants.dart';
+import 'package:sleepy_tunes/ui/custom_methods/build_custom_show_bottom_sheet.dart';
+import 'package:sleepy_tunes/ui/utils/settings_bottom_sheet.dart';
+import 'package:sleepy_tunes/ui/utils/volume_bottom_sheet.dart';
 
 class PlayerControlsRow extends StatefulWidget {
   const PlayerControlsRow({

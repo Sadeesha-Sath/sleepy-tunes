@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sleep_app/app_logic/providers/selected_tracks.dart';
-import 'package:sleep_app/ui/ui_constants.dart';
-import 'package:sleep_app/ui/screens/finish_customization_screen.dart';
+import 'package:sleepy_tunes/app_logic/providers/selected_tracks.dart';
+import 'package:sleepy_tunes/ui/ui_constants.dart';
+import 'package:sleepy_tunes/ui/screens/finish_customization_screen.dart';
 import 'package:provider/provider.dart';
 
 class CustomizeScreenFAB extends StatelessWidget {
@@ -25,14 +25,28 @@ class CustomizeScreenFAB extends StatelessWidget {
             )),
             shape: CircleBorder(),
             // This Button Disables when the selected set is zero
-            onPressed: length != 0 ? () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => FinishCustomizationScreen(),
-                ),
-              );
-            } : null,
+            onPressed: length != 0
+                ? () {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation1, animation2) => FinishCustomizationScreen(),
+                        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                          var begin = Offset(1.0, 0.0);
+                          var end = Offset.zero;
+                          var curve = Curves.easeInOut;
+
+                          var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+                          return SlideTransition(
+                            position: animation.drive(tween),
+                            child: child,
+                          );
+                        },
+                      ),
+                    );
+                  }
+                : null,
             foregroundColor: kBackgroundColor,
             backgroundColor: Colors.lightBlueAccent.shade700,
             // backgroundColor: Color(0xFF141414),

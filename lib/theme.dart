@@ -8,16 +8,20 @@ ThemeData darkTheme = ThemeData.dark().copyWith(
   backgroundColor: kBackgroundColor,
   accentColor: Colors.lightBlueAccent.shade400,
   buttonBarTheme: ButtonBarThemeData(buttonPadding: EdgeInsets.zero),
+  // ? BottomNavBar theme
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      // backgroundColor: kBottomNavBarBackgroundColor,
-      selectedItemColor: Colors.lightBlueAccent.shade700),
+    selectedItemColor: Colors.lightBlueAccent.shade700,
+  ),
   unselectedWidgetColor: Colors.grey.shade600,
   dialogBackgroundColor: kBackgroundColor,
+  // ? AppBar theme
   appBarTheme: AppBarTheme().copyWith(
-      brightness: Brightness.dark,
-      centerTitle: true,
-      backgroundColor: Colors.transparent,
-      foregroundColor: kPrimaryColor),
+    brightness: Brightness.dark,
+    centerTitle: true,
+    backgroundColor: Colors.transparent,
+    foregroundColor: kPrimaryColor,
+  ),
+  // ? Elevated Button Theme
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
       shape: MaterialStateProperty.all(

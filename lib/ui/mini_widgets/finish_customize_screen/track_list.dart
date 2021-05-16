@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:sleep_app/app_logic/audio_players/simple_player.dart';
-import 'package:sleep_app/app_logic/models/track.dart';
-import 'package:sleep_app/app_logic/providers/selected_tracks.dart';
-import 'package:sleep_app/app_logic/providers/volume.dart';
-import 'package:sleep_app/ui/utils/track_card.dart';
-import 'package:sleep_app/ui/mini_widgets/finish_customize_screen/timer_card.dart';
+import 'package:sleepy_tunes/app_logic/audio_players/simple_player.dart';
+import 'package:sleepy_tunes/app_logic/models/track.dart';
+import 'package:sleepy_tunes/app_logic/providers/selected_tracks.dart';
+import 'package:sleepy_tunes/app_logic/providers/volume.dart';
+import 'package:sleepy_tunes/ui/utils/track_card.dart';
+import 'package:sleepy_tunes/ui/mini_widgets/finish_customize_screen/timer_card.dart';
 import 'package:provider/provider.dart';
 
 class TrackList extends StatelessWidget {

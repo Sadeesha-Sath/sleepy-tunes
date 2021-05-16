@@ -1,4 +1,4 @@
-package com.example.sleep_app
+package com.sadeeshasathmina.sleepy_tunes
 
 import io.flutter.embedding.android.FlutterActivity
 

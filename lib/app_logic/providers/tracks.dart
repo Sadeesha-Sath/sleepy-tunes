@@ -1,5 +1,5 @@
-import 'package:sleep_app/app_logic/logic_handelers/rootbundle_handeler.dart';
-import 'package:sleep_app/app_logic/models/track.dart';
+import 'package:sleepy_tunes/app_logic/logic_handelers/rootbundle_handeler.dart';
+import 'package:sleepy_tunes/app_logic/models/track.dart';
 import 'package:flutter/material.dart';
 
 class Tracks with ChangeNotifier {
@@ -10,12 +10,11 @@ class Tracks with ChangeNotifier {
   List<Track> _lifestyleTracks = [];
   List<Track> _brainWaveTracks = [];
 
-
   void loadTracks() async {
     var jsonString = await loadTracksdata();
     for (var track in jsonString) {
-      var newTrack =
-          Track(trackImagePath: track['image_path'], trackName: track['title'], trackPath: track['audio_path'], volume: 0.8);
+      var newTrack = Track(
+          trackImagePath: track['image_path'], trackName: track['title'], trackPath: track['audio_path'], volume: 0.8);
       if (track['category'] == "nature")
         _naturalTracks.add(newTrack);
       else if (track['category'] == "water")
@@ -48,4 +47,3 @@ class Tracks with ChangeNotifier {
 
   List<Track> get getActiveTrackList => _activeTrackList;
 }
-

@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.sleep_app">
+    package="com.sadeeshasathmina.sleepy_tunes">
   <uses-permission android:name="android.permission.WAKE_LOCK"/>
   <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
    <application
-        android:label="sleep_app"
+        android:label="sleepy_tunes"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

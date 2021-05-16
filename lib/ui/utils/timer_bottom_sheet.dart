@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sleep_app/ui/ui_constants.dart';
+import 'package:sleepy_tunes/ui/ui_constants.dart';
 
 class TimerBottomSheet extends StatefulWidget {
   final List<int> initialValues;
@@ -118,7 +118,7 @@ class _TimerBottomSheetState extends State<TimerBottomSheet> {
                           });
                         },
                         children: [
-                          for (var i = 0; i < 61; i += 1)
+                          for (var i = 0; i < 60; i += 1)
                             Text(
                               i.toString(),
                               style: TextStyle(color: kPrimaryColor),

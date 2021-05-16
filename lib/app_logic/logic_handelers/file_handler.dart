@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
-import 'package:sleep_app/app_logic/models/preset.dart';
+import 'package:sleepy_tunes/app_logic/models/preset.dart';
 
 Future<String> get _localPath async {
   final directory = await getApplicationDocumentsDirectory();

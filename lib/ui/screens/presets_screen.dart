@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:sleep_app/app_logic/models/preset.dart';
-import 'package:sleep_app/app_logic/providers/customize_timer.dart';
-import 'package:sleep_app/app_logic/providers/presets.dart';
-import 'package:sleep_app/app_logic/providers/selected_tracks.dart';
-import 'package:sleep_app/ui/screens/finish_customization_screen.dart';
-import 'package:sleep_app/ui/screens/player_screen.dart';
-import 'package:sleep_app/ui/ui_constants.dart';
-import 'package:sleep_app/ui/utils/custom_sliver_appbar.dart';
+import 'package:sleepy_tunes/app_logic/models/preset.dart';
+import 'package:sleepy_tunes/app_logic/providers/customize_timer.dart';
+import 'package:sleepy_tunes/app_logic/providers/presets.dart';
+import 'package:sleepy_tunes/app_logic/providers/selected_tracks.dart';
+import 'package:sleepy_tunes/ui/screens/finish_customization_screen.dart';
+import 'package:sleepy_tunes/ui/screens/player_screen.dart';
+import 'package:sleepy_tunes/ui/ui_constants.dart';
+import 'package:sleepy_tunes/ui/utils/custom_sliver_appbar.dart';
 import 'package:provider/provider.dart';
 
 class PresetScreen extends StatelessWidget {
@@ -40,16 +40,41 @@ class PresetScreen extends StatelessWidget {
                                 context.read<CustomizeTimer>().changeTiming(e.timing.cast<int>());
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(
-                                    builder: (context) => FinishCustomizationScreen(),
+                                  PageRouteBuilder(
+                                    pageBuilder: (context, animation1, animation2) => FinishCustomizationScreen(),
+                                    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                      var begin = Offset(1.0, 0.0);
+                                      var end = Offset.zero;
+                                      var curve = Curves.easeInOut;
+
+                                      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+                                      return SlideTransition(
+                                        position: animation.drive(tween),
+                                        child: child,
+                                      );
+                                    },
                                   ),
                                 );
                               },
                               onTap: () {
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(
-                                    builder: (context) => PlayerScreen(timing: e.timing, tracks: e.trackList.toSet()),
+                                  PageRouteBuilder(
+                                    pageBuilder: (context, animation1, animation2) =>
+                                        PlayerScreen(timing: e.timing.cast<int>(), tracks: e.trackList.toSet()),
+                                    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                      var begin = Offset(0.0, 1.0);
+                                      var end = Offset.zero;
+                                      var curve = Curves.easeInOut;
+
+                                      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+                                      return SlideTransition(
+                                        position: animation.drive(tween),
+                                        child: child,
+                                      );
+                                    },
                                   ),
                                 );
                               },

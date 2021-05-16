@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sleep_app/app_logic/logic_handelers/rootbundle_handeler.dart';
-import 'package:sleep_app/app_logic/models/tune.dart';
+import 'package:sleepy_tunes/app_logic/logic_handelers/rootbundle_handeler.dart';
+import 'package:sleepy_tunes/app_logic/models/tune.dart';
 
 class Tunes with ChangeNotifier {
   // Future jsonString;

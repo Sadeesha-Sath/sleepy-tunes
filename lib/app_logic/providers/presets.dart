@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sleep_app/app_logic/models/preset.dart';
-import 'package:sleep_app/app_logic/logic_handelers/file_handler.dart';
-import 'package:sleep_app/app_logic/models/track.dart';
-
+import 'package:sleepy_tunes/app_logic/models/preset.dart';
+import 'package:sleepy_tunes/app_logic/logic_handelers/file_handler.dart';
+import 'package:sleepy_tunes/app_logic/models/track.dart';
 
 class Presets with ChangeNotifier {
   Set<Preset> _presetSet = {};

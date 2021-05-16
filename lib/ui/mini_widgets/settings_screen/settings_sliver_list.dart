@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sleep_app/ui/mini_widgets/settings_screen/timer_button.dart';
-import 'package:sleep_app/ui/custom_methods/build_custom_show_bottom_sheet.dart';
+import 'package:sleepy_tunes/ui/mini_widgets/settings_screen/timer_button.dart';
+import 'package:sleepy_tunes/ui/custom_methods/build_custom_show_bottom_sheet.dart';
 import 'package:provider/provider.dart';
-import 'package:sleep_app/app_logic/providers/presets.dart';
-import 'package:sleep_app/ui/utils/preset_bottom_sheet.dart';
+import 'package:sleepy_tunes/app_logic/providers/presets.dart';
+import 'package:sleepy_tunes/ui/utils/preset_bottom_sheet.dart';
 
 class SettingsSliverList extends StatelessWidget {
   @override

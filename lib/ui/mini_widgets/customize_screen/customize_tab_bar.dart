@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:sleep_app/app_logic/providers/tracks.dart';
-import 'package:sleep_app/ui/ui_constants.dart';
+import 'package:sleepy_tunes/app_logic/providers/tracks.dart';
+import 'package:sleepy_tunes/ui/ui_constants.dart';
 import 'package:provider/provider.dart';
 
 class CustomizeTabBar extends StatefulWidget {
