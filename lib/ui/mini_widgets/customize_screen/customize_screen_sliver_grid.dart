@@ -30,8 +30,11 @@ class CustomizeScreenSliverGrid extends StatelessWidget {
                   margin: EdgeInsets.only(left: 15, right: 15, bottom: 60),
                   shape: CircleBorder(),
                   child: Container(
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(_activeTrackList[index].trackImagePath), fit: BoxFit.cover)),
                     child: Opacity(
-                      opacity: _selectedTracks.contains(_activeTrackList[index]) ? 0.5 : 0,
+                      opacity: _selectedTracks.contains(_activeTrackList[index]) ? 0.75 : 0,
                       child: Container(
                         child: Center(
                           child: Icon(
@@ -40,7 +43,7 @@ class CustomizeScreenSliverGrid extends StatelessWidget {
                             size: 100,
                           ),
                         ),
-                        color: Colors.green,
+                        color: Theme.of(context).accentColor,
                       ),
                     ),
                   ),

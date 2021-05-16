@@ -15,7 +15,7 @@ class Tracks with ChangeNotifier {
     var jsonString = await loadTracksdata();
     for (var track in jsonString) {
       var newTrack =
-          Track(trackImagePath: track['title'], trackName: track['title'], trackPath: track['audio_path'], volume: 0.8);
+          Track(trackImagePath: track['image_path'], trackName: track['title'], trackPath: track['audio_path'], volume: 0.8);
       if (track['category'] == "nature")
         _naturalTracks.add(newTrack);
       else if (track['category'] == "water")

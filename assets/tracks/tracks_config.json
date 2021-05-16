@@ -2,216 +2,253 @@
   {
     "title": "Brook",
     "audio_path": "assets/tracks/audio/brook.mp3",
+    "image_path": "assets/tracks/cover_art/brook.jpg",
     "category": "water"
   },
   {
     "title": "Waterfall",
     "audio_path": "assets/tracks/audio/waterfall.mp3",
+    "image_path": "assets/tracks/cover_art/waterfall.jpg",
     "category": "water"
   },
   {
     "title": "River",
     "audio_path": "assets/tracks/audio/river.mp3",
+    "image_path": "assets/tracks/cover_art/river.jpg",
     "category": "water"
   },
   {
     "title": "Sea Waves",
     "audio_path": "assets/tracks/audio/sea_waves.mp3",
+    "image_path": "assets/tunes/cover_art/wave.jpg",
     "category": "water"
   },
   {
     "title": "Blabboring Stream",
     "audio_path": "assets/tracks/audio/stream_noise.mp3",
+    "image_path": "assets/tracks/cover_art/stream.jpg",
     "category": "water"
   },
   {
     "title": "Alien Machine Gun",
     "audio_path": "assets/tracks/audio/alien_machine_gun.mp3",
+    "image_path": "assets/tracks/cover_art/alien_machine_gun.jpg",
     "category": "sci-fi"
   },
   {
     "title": "Alien Siren",
     "audio_path": "assets/tracks/audio/alien_siren.mp3",
+    "image_path": "assets/tracks/cover_art/siren.jpg",
     "category": "sci-fi"
   },
   {
     "title": "Alien Spaceship",
     "audio_path": "assets/tracks/audio/alien_spaceship.mp3",
+    "image_path": "assets/tracks/cover_art/ufo.jpg",
     "category": "sci-fi"
   },
   {
     "title": "Appear",
     "audio_path": "assets/tracks/audio/appear.mp3",
+    "image_path": "assets/tracks/cover_art/appear.jpeg",
     "category": "sci-fi"
   },
   {
     "title": "Laser",
     "audio_path": "assets/tracks/audio/laser.mp3",
+    "image_path": "assets/tracks/cover_art/laser.jpg",
     "category": "sci-fi"
   },
   {
     "title": "Strange Static",
     "audio_path": "assets/tracks/audio/strange_static.mp3",
+    "image_path": "assets/tunes/cover_art/noise.jpg",
     "category": "sci-fi"
   },
   {
     "title": "Baby Chick",
     "audio_path": "assets/tracks/audio/baby_chick.mp3",
+    "image_path":"assets/tracks/cover_art/baby_chick.jpg",
     "category": "nature"
   },
   {
     "title": "Bamboo",
     "audio_path": "assets/tracks/audio/bamboo.mp3",
+    "image_path":"assets/tracks/cover_art/bamboo.jpg",
     "category": "nature"
   },
   {
     "title": "Bush Fire",
     "audio_path": "assets/tracks/audio/bush_fire.mp3",
+    "image_path":"assets/tracks/cover_art/bush_fire.jpg",
     "category": "nature"
   },
   {
     "title": "Cicada",
     "audio_path": "assets/tracks/audio/cicada.mp3",
+    "image_path":"assets/tracks/cover_art/cicada.jpg",
     "category": "nature"
   },
   {
     "title": "Cow",
     "audio_path": "assets/tracks/audio/cow.mp3",
+    "image_path": "assets/tracks/cover_art/cow.jpg",
     "category": "nature"
   },
   {
     "title": "Earthquake",
     "audio_path": "assets/tracks/audio/earthquake.mp3",
+    "image_path":"assets/tracks/cover_art/earthquake.jpg",
     "category": "nature"
   },
   {
     "title": "Flapping Wings",
     "audio_path": "assets/tracks/audio/flapping_wings.mp3",
+    "image_path": "assets/tracks/cover_art/flapping_wings.jpg",
     "category": "nature"
   },
   {
     "title": "Forest",
     "audio_path": "assets/tracks/audio/forest.mp3",
+    "image_path": "assets/tracks/cover_art/forest.jpg",
     "category": "nature"
   },
   {
     "title": "Frogs",
     "audio_path": "assets/tracks/audio/frogs.mp3",
+    "image_path": "assets/tracks/cover_art/frog.jpg",
     "category": "nature"
   },
   {
     "title": "Heartbeat",
     "audio_path": "assets/tracks/audio/heartbeat.mp3",
+    "image_path": "assets/tracks/cover_art/heartbeat.jpg",
     "category": "nature"
   },
   {
     "title": "Leaves Rustling",
     "audio_path": "assets/tracks/audio/leaves.mp3",
+    "image_path":"assets/tracks/cover_art/leaves.jpg",
     "category": "nature"
   },
   {
     "title": "Natural Ambience",
     "audio_path": "assets/tracks/audio/natural_ambience.mp3",
+    "image_path": "assets/tracks/cover_art/natural_ambience.jpg",
     "category": "nature"
   },
   {
     "title": "Night",
     "audio_path": "assets/tracks/audio/night_time.mp3",
+    "image_path":"assets/tracks/cover_art/night.jpg",
     "category": "nature"
   },
   {
     "title": "Thunder",
     "audio_path": "assets/tracks/audio/thunder.mp3",
+    "image_path": "assets/tracks/cover_art/thunder.jpg",
     "category": "nature"
   },
   {
     "title": "Wind",
     "audio_path": "assets/tracks/audio/wind.mp3",
+    "image_path":"assets/tracks/cover_art/wind.jpg",
     "category": "nature"
   },
   {
     "title": "Ambulance",
     "audio_path": "assets/tracks/audio/ambulance.mp3",
+    "image_path":"assets/tracks/cover_art/ambulance.jpg",
     "category": "lifestyle"
   },
   {
     "title": "Campfire",
     "audio_path": "assets/tracks/audio/campfire.mp3",
+    "image_path":"assets/tracks/cover_art/campfire.jpg",
     "category": "lifestyle"
   },
   {
     "title": "Car",
     "audio_path": "assets/tracks/audio/car.mp3",
+    "image_path":"assets/tracks/cover_art/car.jpg",
     "category": "lifestyle"
   },
   {
     "title": "Computer Typing",
     "audio_path": "assets/tracks/audio/computer_typing.mp3",
+    "image_path":"assets/tracks/cover_art/typing.jpg",
     "category": "lifestyle"
   },
   {
     "title": "Harley Davidson",
     "audio_path": "assets/tracks/audio/harley_davidson.mp3",
+    "image_path":"assets/tracks/cover_art/harley_davidson.jpg",
     "category": "lifestyle"
   },
   {
     "title": "Kitchen Sink",
     "audio_path": "assets/tracks/audio/kitchen_sink.mp3",
+    "image_path": "assets/tracks/cover_art/kitchen_sink.jpg",
     "category": "lifestyle"
   },
   {
     "title": "City Rain at Night",
     "audio_path": "assets/tracks/audio/night_rain_city.mp3",
+    "image_path":"assets/tracks/cover_art/night_city_rain.jpg",
     "category": "lifestyle"
   },
   {
     "title": "Rowing a Boat",
     "audio_path": "assets/tracks/audio/rowing_a_boat.mp3",
+    "image_path":"assets/tracks/cover_art/rowing_a_boat.jpg",
     "category": "lifestyle"
   },
   {
     "title": "Brainstorm",
     "audio_path": "assets/tracks/audio/brainstorm.mp3",
+    "image_path":"assets/tracks/cover_art/brainstorm.jpg",
     "category": "brainwaves"
   },
   {
     "title": "Clear Mind Zen",
     "audio_path": "assets/tracks/audio/clear_mind.mp3",
+    "image_path":"assets/tracks/cover_art/zen.png",
     "category": "brainwaves"
   },
   {
     "title": "Focus",
     "audio_path": "assets/tracks/audio/focus.mp3",
+    "image_path":"assets/tracks/cover_art/focus.jpg",
     "category": "brainwaves"
   },
   {
     "title": "Deep Sleep",
     "audio_path": "assets/tracks/audio/deep_sleep.mp3",
-    "category": "brainwaves"
-  },
-  {
-    "title": "Edge Sleep",
-    "audio_path": "assets/tracks/audio/edge_sleep.mp3",
+    "image_path":"assets/tracks/cover_art/deep_sleep.jpg",
     "category": "brainwaves"
   },
   {
     "title": "Eupohoria",
     "audio_path": "assets/tracks/audio/euphoria.mp3",
+    "image_path":"assets/tracks/cover_art/euphoria.jpg",
     "category": "brainwaves"
   },
   {
     "title": "Power Nap",
     "audio_path": "assets/tracks/audio/power_nap.mp3",
+    "image_path":"assets/tracks/cover_art/power_nap.jpg",
     "category": "brainwaves"
   },
   {
     "title": "Meditative Focus",
     "audio_path": "assets/tracks/audio/mediatative.mp3",
+    "image_path": "assets/tunes/cover_art/meditation.jpeg",
     "category": "brainwaves"
   },
   {
     "title": "Rise and Shine",
     "audio_path": "assets/tracks/audio/rise_and_shine.mp3",
+    "image_path":"assets/tracks/cover_art/rise_and_shine.jpeg",
     "category": "brainwaves"
   }
 ]

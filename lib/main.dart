@@ -44,6 +44,5 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// TODO Cut and trim the nature tune
+// TODO Add animations
 // TODO  Implement audio service and audio picker
-// TODO Add tunes and all only after filling all the folders

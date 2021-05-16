@@ -46,6 +46,7 @@ flutter:
     - assets/
     - assets/tracks/
     - assets/tracks/audio/
+    - assets/tracks/cover_art/
     - assets/tunes/
     - assets/tunes/audio/
     - assets/tunes/cover_art/
